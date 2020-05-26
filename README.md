@@ -1,6 +1,8 @@
 # .dotfiles
 my dotfiles
 
+dotfiles config --local status.showUntrackedFiles no
+
 # ZSH
 [Theme](https://github.com/romkatv/powerlevel10k) install:  
 `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k`  
