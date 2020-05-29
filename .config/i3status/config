@@ -7,6 +7,11 @@ general {
 		color_degraded = '#ebcb8b'
 		color_bad = '#ba5e57'
 }
+
+# Medium Aquamarine #6EDBBA
+# Green-yellow #D9DD92
+# Chocolate #CA642E
+
 order += "memory"
 order += "load"
 order += "cpu_usage"
@@ -19,15 +24,15 @@ order += "volume master"
 order += "tztime local"
 
 load {
-        format = "<span background='#f59335'>  %5min Load </span>"
+        format = "<span background='#D9DD92'>  %5min Load </span>"
 }
 
 cpu_usage {
-        format = "<span background='#b48ead'>  %usage </span>"
+        format = "<span background='#CA642E'>  %usage </span>"
 }
 
 disk "/" {
-        format = "<span background='#fec7cd'>  %free Free </span>"
+        format = "<span background='#6EDBBA'>  %free Free </span>"
 }
 
 disk "/home" {
@@ -35,8 +40,8 @@ disk "/home" {
 }
 
 ethernet enp0s3 {
-        format_up = "<span background='#88c0d0'>  %ip </span>"
-        format_down = "<span background='#88c0d0'>  Disconnected </span>"
+        format_up = "<span background='#D9DD92'>  %ip </span>"
+        format_down = "<span background='#D9DD92'>  Disconnected </span>"
 }
 
 wireless wlp2s0 {
@@ -45,8 +50,8 @@ wireless wlp2s0 {
 }
 
 volume master {
-        format = "<span background='#ebcb8b'>  %volume </span>"
-        format_muted = "<span background='#ebcb8b'>  Muted </span>"
+        format = "<span background='#CA642E'>  %volume </span>"
+        format_muted = "<span background='#CA642E'>  Muted </span>"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
@@ -65,10 +70,10 @@ battery 1 {
 }
 
 tztime local {
-		format = "<span background='#81a1c1'> %time </span>"
+		format = "<span background='#6EDBBA'> %time </span>"
 		format_time = " %a %-d %b %H:%M"
 }
 
 memory {
-        format = "<span background='#a3be8c'> %used / %total</span>"
+        format = "<span background='#6EDBBA'> %used / %total</span>"
 }
