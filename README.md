@@ -1,7 +1,9 @@
 # .dotfiles
-my dotfiles
+my dotfiles   
 
-dotfiles config --local status.showUntrackedFiles no
+`git clone --bare git@github.com:AnttiRae/.dotfiles.git $HOME/.dotfiles`   
+`alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`   
+`dotfiles config --local status.showUntrackedFiles no`
 
 # ZSH
 [Theme](https://github.com/romkatv/powerlevel10k) install:  
