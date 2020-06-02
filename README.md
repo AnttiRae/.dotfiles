@@ -17,4 +17,7 @@ zsh plugins installation:
 `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`  
 
 # i3 installation  
+## arch  
 `sudo pacman -S i3-wm dunst i3status compton rxvt-unicode nitrogen rofi dmenu thunar ranger`
+## ubuntu  
+`sudo apt-get install i3 compton nitrogen rxvt-unicode xsel rofi fonts-noto fonts-mplus xsettingsd lxappearance scrot viewnior`
