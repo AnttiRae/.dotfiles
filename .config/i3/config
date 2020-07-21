@@ -12,9 +12,10 @@ floating_modifier $super
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
+exec --no-startup-id flameshot
 
 # start a terminal
-bindsym $super+Return exec i3-sensible-terminal
+bindsym $super+Return exec urxvt
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+Return exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
@@ -24,8 +25,10 @@ bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show dru
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
 bindsym $super+l exec i3lock -i ~/.wallpapers/0001.png
 bindsym $super+Shift+w exec firefox
-bindsym $super+e exec thunar;workspace 3;focus
+bindsym $super+e exec thunar
 bindsym $super+Shift+g exec geany
+bindsym $super+Shift+s exec flameshot gui
+
 
 #change volume
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
