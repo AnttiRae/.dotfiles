@@ -119,15 +119,15 @@ bindsym $super+r mode "resize"
 bar {
         position top
         colors {
-        background #2f343f
-        statusline #2f343f
-        separator #4b5262
+        background #2f343f33
+        statusline #2f343f33
+        separator #4b526233
 
         # colour of border, background, and text
-        focused_workspace       #2f343f #bf616a #d8dee8
-        active_workspace        #2f343f #2f343f #d8dee8
-        inactive_workspace      #2f343f #2f343f #d8dee8
-        urgent_workspacei       #2f343f #ebcb8b #2f343f
+        focused_workspace       #2f343f33 #CA642E #d8dee8
+        active_workspace        #2f343f33 #2f343f33 #d8dee8
+        inactive_workspace      #2f343f33 #2f343f33 #d8dee8
+        urgent_workspacei       #2f343f33 #ebcb8b #2f343f33
     }
         status_command i3status
 }
