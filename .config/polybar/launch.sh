@@ -6,6 +6,7 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-polybar -r bar &
+echo "---" | tee -a /tmp/polybar.log
+polybar bar1 -r >>/tmp/polybar1.log 2>&1 & disown
 
-echo "Polybar launched..."
+echo "Bars launched..."
