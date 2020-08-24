@@ -69,8 +69,8 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm 
-modules-center = spotify pulseaudio
-modules-right = filesystem xkeyboard memory cpu eth date powermenu
+modules-center = spotify pulseaudio wallpaper
+modules-right = filesystem xkeyboard memory cpu eth date battery wlan powermenu
 
 tray-position = right
 tray-padding = 2
@@ -164,7 +164,7 @@ label = %percentage_used%%
 
 [module/eth]
 type = internal/network
-interface = enp0s3
+interface = enp0s25
 interval = 3.0
 
 ;format-connected-underline = #55aa55
@@ -178,9 +178,41 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+                 _ _                             
+__      ____ _| | |_ __   __ _ _ __   ___ _ __ 
+\ \ /\ / / _` | | | '_ \ / _` | '_ \ / _ \ '__|
+ \ V  V / (_| | | | |_) | (_| | |_) |  __/ |   
+  \_/\_/ \__,_|_|_| .__/ \__,_| .__/ \___|_|   
+                  |_|         |_|              
+[module/wallpaper]
+type = custom/menu
+label-close =
+label-open = 
+menu-0-0 = 
+menu-0-0-exec = $HOME/Scripts/wallpaperChange.sh &
+
 ;     _       _       
 ;  __| | __ _| |_ ___ 
-; / _` |/ _` | __/ _ \
+; / _` |/ _` | __/ _ \ 
 ;| (_| | (_| | ||  __/
 ; \__,_|\__,_|\__\___|
 
@@ -235,6 +267,43 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+; _           _   _                  
+;| |__   __ _| |_| |_ ___ _ __ _   _ 
+;| '_ \ / _` | __| __/ _ \ '__| | | |
+;| |_) | (_| | |_| ||  __/ |  | |_| |
+;|_.__/ \__,_|\__|\__\___|_|   \__, |
+;                              |___/ 
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+
+format-discharging = <animation-discharging> <label-discharging>
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
 ;                 _   _  __       
 ; ___ _ __   ___ | |_(_)/ _|_   _ 
 ;/ __| '_ \ / _ \| __| | |_| | | |
@@ -275,7 +344,7 @@ label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = poweroff
 menu-0-1-exec = menu-open-2
 
 menu-1-0 = cancel
