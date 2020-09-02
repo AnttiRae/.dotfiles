@@ -1,7 +1,7 @@
 # .dotfiles
 my dotfiles   
 
-`git clone --bare git@github.com:AnttiRae/.dotfiles.git $HOME/.dotfiles`   
+`git clone --bare https://github.com/AnttiRae/.dotfiles.git $HOME/.dotfiles`   
 `alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`   
 `dotfiles config --local status.showUntrackedFiles no`
 
