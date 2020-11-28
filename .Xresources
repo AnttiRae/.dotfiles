@@ -1,41 +1,25 @@
 !! Colorscheme
+#include "/home/antti/.xcolors/atelierseaside"
 
-! special
-*.foreground: #93a1a1
-*.background: #141c21
-*.cursorColor: #afbfbf
-
-! black
-*.color0: #263640
-*.color8: #4a697d
-
-! red
-*.color1: #d12f2c
-*.color9: #fa3935
-
-! green
-*.color2: #819400
-*.color10: #a4bd00
-
-! yellow
-*.color3: #b08500
-*.color11: #d9a400
-
-! blue
-*.color4: #2587cc
-*.color12: #2ca2f5
-
-! magenta
-*.color5: #696ebf
-*.color13: #8086e8
-
-! cyan
-*.color6: #289c93
-*.color14: #33c5ba
-
-! white
-*.color7: #bfbaac
-*.color15: #fdf6e3
+*.foreground: FOREGROUND
+*.background: BACKGROUND
+*.cursorColor: FOREGROUND
+*.color0: COLOR0
+*.color8: COLOR8
+*.color1: COLOR1
+*.color9: COLOR9
+*.color2: COLOR2
+*.color10: COLOR10
+*.color3: COLOR3
+*.color11: COLOR11
+*.color4: COLOR4
+*.color12: COLOR12
+*.color5: COLOR5
+*.color13: COLOR13
+*.color6: COLOR6
+*.color14: COLOR14
+*.color7: COLOR7
+*.color15: COLOR15
 
 !! URxvt Appearance
 URxvt.font: xft:MesloLGS NF:pixelsize=12:antialias=true
