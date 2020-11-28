@@ -38,4 +38,5 @@ _bc urgent_border_color 	"#CA642E"
 
 nitrogen --restore
 $HOME/.config/polybar/launch.sh
-picom
+picom --config $HOME/.config/picom/picom.conf
+
