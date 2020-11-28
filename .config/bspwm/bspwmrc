@@ -8,8 +8,10 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-_bc border_width         	1
-_bc window_gap          	4
+_bc border_width         	2
+_bc window_gap          	1
+# _bc config top_padding 		0
+
 
 _bc automatic_scheme 		spiral
 _bc split_ratio         	0.50
