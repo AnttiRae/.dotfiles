@@ -204,6 +204,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 ; \ V  V / (_| | | | |_) | (_| | |_) |  __/ |   
 ;  \_/\_/ \__,_|_|_| .__/ \__,_| .__/ \___|_|   
 ;                  |_|         |_|              
+
 [module/wallpaper]
 type = custom/menu
 label-close =
@@ -233,7 +234,7 @@ format-prefix-foreground = ${colors.foreground-alt}
 ;format-prefix-background = #3d62f5
 ;format-underline = #0a6cf5
 
-label =  %date% %time%
+label = %date% %time%
 label-background = #CA642E
 label-foreground = #222
 
