@@ -29,7 +29,7 @@ super + d
 
 # thunar
 super + e
-	thunar
+	urxvt -e ranger
 
 # flameshot
 super + shift + s
