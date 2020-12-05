@@ -122,6 +122,7 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/antti/.zshrc'
 
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -144,3 +145,6 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias dotfiles='/usr/bin/git --git-dir=/home/antti/.dotfiles/ --work-tree=/home/antti'
+
+export EDITOR=vim
+
