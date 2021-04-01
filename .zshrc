@@ -145,6 +145,11 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias dotfiles='/usr/bin/git --git-dir=/home/antti/.dotfiles/ --work-tree=/home/antti'
-
+alias tt="taskwarrior-tui"
+alias ts="task sync"
 export EDITOR=vim
 export VISUAL=vim
+
+PATH="$HOME/.local/bin:$PATH"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
