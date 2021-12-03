@@ -17,10 +17,17 @@ exec --no-startup-id flameshot
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec --no-startup-id alternating_layouts.py
+exec --no-startup-id jack_control start
 #exec --no-startup-id cadence
 
 # start a terminal
 bindsym $super+Return exec urxvt
+
+# start firefox
+bindsym $super+p exec firefox
+
+#start Pavucontrol
+bindsym $super+z exec pavucontrol
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+Return exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
