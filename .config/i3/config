@@ -21,12 +21,15 @@ exec --no-startup-id jack_control start
 #exec --no-startup-id cadence
 
 # start a terminal
-bindsym $super+Return exec urxvt
+bindsym $super+Return exec kitty
+
+# start audacious
+bindsym $super+a exec audacious
 
 # start firefox
 bindsym $super+p exec firefox
 
-#start Pavucontrol
+# start Pavucontrol
 bindsym $super+z exec pavucontrol
 
 # start dmenu (a program launcher)
@@ -148,7 +151,7 @@ bindsym $super+r mode "resize"
 
 # window rules, you can find the window class using xprop
 for_window [class=".*"] border pixel 4
-# assign [class=URxvt] 1
+# assign [class=URxvt] border pixel 1
 # assign [class=Firefox|Transmission-gtk] 2
 # assign [class=Thunar|File-roller] 3
 # assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
