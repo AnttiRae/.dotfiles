@@ -147,6 +147,7 @@ unset __conda_setup
 alias dotfiles='/usr/bin/git --git-dir=/home/antti/.dotfiles/ --work-tree=/home/antti'
 alias tt="taskwarrior-tui"
 alias ts="task sync"
+alias ssh="kitty +kitten ssh"
 export EDITOR=vim
 export VISUAL=vim
 
