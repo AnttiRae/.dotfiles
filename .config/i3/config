@@ -23,6 +23,9 @@ exec --no-startup-id jack_control start
 # start a terminal
 bindsym $super+Return exec kitty
 
+# start a logseq
+bindsym $super+n exec logseq
+
 # start audacious
 bindsym $super+a exec audacious
 
