@@ -45,8 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
--- beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -170,11 +169,11 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     if s.index==1 then
-        awful.tag({ "1", "2"}, s, awful.layout.layouts[1])
+        awful.tag({ "1"}, s, awful.layout.layouts[1])
     elseif s.index==2 then
-        awful.tag({ "1" }, s, awful.layout.layouts[2])
+        awful.tag({ "2" }, s, awful.layout.layouts[2])
     elseif s.index==3 then
-        awful.tag({ "1" }, s, awful.layout.layouts[1])
+        awful.tag({ "3" }, s, awful.layout.layouts[1])
     end
 
     -- Each screen has its own tag table.
