@@ -172,7 +172,7 @@ awful.screen.connect_for_each_screen(function(s)
     if s.index==1 then
         awful.tag({ "1", "2"}, s, awful.layout.layouts[1])
     elseif s.index==2 then
-        awful.tag({ "1" }, s, awful.layout.layouts[2])
+        awful.tag({ "1" }, s, awful.layout.layouts[6])
     elseif s.index==3 then
         awful.tag({ "1" }, s, awful.layout.layouts[1])
     end
