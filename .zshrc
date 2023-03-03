@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/antti/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -120,7 +120,7 @@ setopt autocd
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/antti/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 
 autoload -Uz compinit
@@ -129,14 +129,14 @@ compinit
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/antti/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('~/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/antti/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/antti/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "~/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "~/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/antti/anaconda3/bin:$PATH"
+        export PATH="~/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -144,7 +144,7 @@ unset __conda_setup
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-alias dotfiles='/usr/bin/git --git-dir=/home/antti/.dotfiles/ --work-tree=/home/antti'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ssh="kitty +kitten ssh"
 export EDITOR=vim
 export VISUAL=vim
@@ -157,5 +157,5 @@ alias la='lsd -la'
 PATH="$HOME/.local/bin:$PATH"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export PATH="$PATH:/opt/processing"
-export PATH="$PATH:/home/antti/.cargo/bin"
+export PATH="$PATH:~/.cargo/bin"
 
