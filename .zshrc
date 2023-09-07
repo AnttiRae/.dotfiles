@@ -145,7 +145,6 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias ssh="kitty +kitten ssh"
 export EDITOR=vim
 export VISUAL=vim
 
@@ -161,4 +160,7 @@ PATH="$HOME/.local/bin:$PATH"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export PATH="$PATH:/opt/processing"
 export PATH="$PATH:~/.cargo/bin"
+export PATH="$PATH:/home/anttirae/.local/share/JetBrains/Toolbox/scripts"
 
+
+source ~/.conda/activate.d/env_vars.sh
