@@ -83,7 +83,8 @@ plugins=(
 	colored-man-pages
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	)
+	docker
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -162,6 +163,5 @@ export PATH="$PATH:/opt/processing"
 export PATH="$PATH:~/.cargo/bin"
 source <(kubectl completion zsh)
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-export PATH="$PATH:/home/anttirae/.local/share/JetBrains/Toolbox/scripts"
-
-source ~/.conda/activate.d/env_vars.sh
+export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/go/bin/"

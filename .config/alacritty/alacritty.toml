@@ -1,0 +1,16 @@
+import = [
+    "~/.config/alacritty/themes/themes/gruvbox_material_hard_dark.toml"
+]
+
+live_config_reload = true
+
+[window]
+	opacity = 0.9
+	decorations = "None"
+	padding = { x = 2, y = 15 }
+
+[colors.primary]
+	background = "#0f0f0f"
+
+[font]
+	size = 11
