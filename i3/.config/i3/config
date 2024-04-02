@@ -1,0 +1,176 @@
+# set modifier
+set $super Mod4
+set $alt Mod1
+
+# set font
+font pango: Jetbrains mono 10
+
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+
+#autostart
+#exec xrandr --output DP-4 --primary --mode 3440x1440 --rotate normal --output HDMI-0 --mode 1920x1080 --rotate normal --right-of DP-4 --output DP-0 --mode 1920x1080 --rotate right --left-of DP-4
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id xsettingsd &
+exec --no-startup-id compton -b
+exec --no-startup-id flameshot
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+exec --no-startup-id alternating_layouts.py
+exec --no-startup-id jack_control start
+#exec --no-startup-id cadence
+
+# start a terminal
+bindsym $super+Return exec kitty
+
+# start a logseq
+bindsym $super+n exec logseq
+
+# start audacious
+bindsym $super+a exec audacious
+
+# start firefox
+bindsym $super+p exec firefox
+
+# start Pavucontrol
+bindsym $super+z exec pavucontrol
+
+# start dmenu (a program launcher)
+bindsym $super+Shift+Return exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+bindsym $super+space exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 2 -font 'Jetbrains mono 10' -theme gruvbox-dark
+bindsym $super+Control+space exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 2 -font 'Jetbrains mono 10' -theme sidebar
+
+# common apps keybinds
+bindsym $super+l exec i3lock -i ~/.wallpapers/0001.png
+bindsym $super+Shift+w exec firefox
+bindsym $super+e exec thunar
+bindsym $super+Shift+g exec geany
+bindsym $super+Shift+s exec flameshot gui
+
+
+#change volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+# music control audacious
+bindsym XF86AudioNext exec audacious -f
+bindsym XF86AudioPrev exec audacious -r
+bindsym XF86AudioPlay exec audacious -u
+bindsym XF86AudioStop exec audacious -s
+
+# kill focused window
+bindsym $super+x exec --no-startup-id ~/.config/i3/SteamOrKill.sh
+
+# xkill
+bindsym --release $super+Control+x exec xkill
+
+# change focus
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+# move focused window
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $super+h split h
+
+# split in vertical orientation
+bindsym $super+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $super+f fullscreen toggle
+
+# change container layout split
+bindsym $super+s layout toggle split
+
+# toggle tiling / floating
+bindsym $super+m floating toggle
+
+# change focus between tiling / floating windows
+bindsym $super+Shift+space focus mode_toggle
+
+# switch to workspace
+bindsym $super+Control+Right workspace next
+bindsym $super+Control+Left workspace prev
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+bindsym $super+7 workspace 7
+bindsym $super+8 workspace 8
+bindsym $super+9 workspace 9
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+7 move container to workspace 7
+bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+9 move container to workspace 9
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+
+# exit i3
+bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Return mode "default"
+}
+bindsym $super+r mode "resize"
+
+# panel
+# bar {
+#         position top
+#         colors {
+#         background #2f343f33
+#         statusline #2f343f33
+#         separator #4b526233
+# 
+#         # colour of border, background, and text
+#         focused_workspace       #2f343f33 #CA642E #d8dee8
+#         active_workspace        #2f343f33 #2f343f33 #d8dee8
+#         inactive_workspace      #2f343f33 #2f343f33 #d8dee8
+#         urgent_workspacei       #2f343f33 #ebcb8b #2f343f33
+#     }
+#         status_command i3status
+# }
+
+# window rules, you can find the window class using xprop
+for_window [class=".*"] border pixel 4
+# assign [class=URxvt] border pixel 1
+# assign [class=Firefox|Transmission-gtk] 2
+# assign [class=Thunar|File-roller] 3
+# assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
+# assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
+# assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
+for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
+for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #CA642E
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
+hide_edge_borders           smart
+
+focus_follows_mouse no
