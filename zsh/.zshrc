@@ -84,6 +84,7 @@ plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	docker
+	direnv
 )
 
 source $ZSH/oh-my-zsh.sh
