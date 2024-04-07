@@ -166,3 +166,5 @@ source <(kubectl completion zsh)
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$PATH:$HOME/go/bin/"
+
+eval "$(atuin init zsh)"
