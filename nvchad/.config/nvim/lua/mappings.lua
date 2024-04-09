@@ -1,5 +1,5 @@
 require "nvchad.mappings"
-
+local builtin = require("telescope.builtin")
 -- add yours here
 
 local map = vim.keymap.set
@@ -27,3 +27,10 @@ map("n", "<C-k>", function() harpoon:list():prev() end)
 
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- telescope
+
+map("n", "<leader>fs", function() 
+  builtin.grep_string({ search = vim.fn.input("Grep > ") });
+end)
+
