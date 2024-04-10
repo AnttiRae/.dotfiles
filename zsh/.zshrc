@@ -153,6 +153,7 @@ export VISUAL=vim
 alias ll='lsd -lh'
 alias ls='lsd'
 alias la='lsd -la'
+alias vim='nvim'
 
 alias "C=xclip"
 alias "v=xclip -o"
@@ -161,7 +162,7 @@ alias "c=xclip -selection clipboard"
 PATH="$HOME/.local/bin:$PATH"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export PATH="$PATH:/opt/processing"
-export PATH="$PATH:~/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 source <(kubectl completion zsh)
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
