@@ -85,7 +85,11 @@ plugins=(
 	zsh-syntax-highlighting
 	docker
 	direnv
+  kubectl
+  kubectx
 )
+
+RPS1='$(kubectx_prompt_info)'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -168,4 +172,5 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$PATH:$HOME/go/bin/"
 
+eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
