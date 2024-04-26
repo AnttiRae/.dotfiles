@@ -26,6 +26,9 @@ return {
     -- calling `setup` is optional for customization
     require("fzf-lua").setup({})
   end
+  },
+  {
+    "tpope/vim-obsession", lazy = false
   }
   --
   -- {
