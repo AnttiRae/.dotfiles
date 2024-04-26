@@ -154,6 +154,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export EDITOR=vim
 export VISUAL=vim
 
+alias dotedit='cd $HOME/dotfiles/ && nvim .'
 alias ll='lsd -lh'
 alias ls='lsd'
 alias la='lsd -la'
