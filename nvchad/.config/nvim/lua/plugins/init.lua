@@ -28,14 +28,31 @@ return {
   end
   },
   {
-  'rmagatti/auto-session', lazy = false, 
+  'rmagatti/auto-session', lazy = false,
   config = function()
     require("auto-session").setup {
       log_level = "error",
       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
     }
   end
-}
+  },
+  {
+  'linux-cultist/venv-selector.nvim', lazy = true,
+  dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+  opts = {
+    -- Your options go here
+    -- name = "venv"
+    name = {"venv", ".venv", "env"}
+    -- auto_refresh = false
+  },
+  event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+  keys = {
+    -- Keymap to open VenvSelector to pick a venv.
+    { '<leader>vs', '<cmd>VenvSelect<cr>' },
+    -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+    { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
+  }
+  },
   --
   -- {
   -- 	"williamboman/mason.nvim",
@@ -45,15 +62,4 @@ return {
   -- 			"html-lsp", "css-lsp" , "prettier"
   -- 		},
   -- 	},
-  -- },
-  --
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
 }
