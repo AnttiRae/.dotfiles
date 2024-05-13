@@ -1,2 +1,2 @@
 #!/usr/bin/env zsh
-sesh connect $(sesh list | fzf)
+sesh connect $(sesh list | fzf-tmux)
