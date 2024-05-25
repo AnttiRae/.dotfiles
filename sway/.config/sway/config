@@ -69,7 +69,7 @@ input type:pointer {
 
 input type:keyboard {
   xkb_layout us,us 
-  xkb_variant intl,
+  xkb_variant altgr-weur,
   xkb_options grp:alt_shift_toggle
 }
 
@@ -259,9 +259,6 @@ workspace 6 output DP-3
 workspace 7 output DP-3
 workspace 8 output DP-1
 workspace 9 output HDMI-A-1
-output DP-1 bg /home/antti/Wallpapers/006.jpg fill
-output DP-3 bg /home/antti/Wallpapers/006.jpg fill
-output HDMI-A-1 bg /home/antti/Wallpapers/006.jpg fill
 
 assign [app_id="tidal-hifi"] workspace 4
 assign [class="discord"] workspace 4
