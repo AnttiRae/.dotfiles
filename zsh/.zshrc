@@ -170,7 +170,10 @@ PATH="$HOME/.local/bin:$PATH"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export PATH="$PATH:/opt/processing"
 export PATH="$PATH:$HOME/.cargo/bin"
+
 source <(kubectl completion zsh)
+source <(helm completion bash)
+
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$PATH:$HOME/go/bin/"
