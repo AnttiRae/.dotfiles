@@ -172,7 +172,7 @@ export PATH="$PATH:/opt/processing"
 export PATH="$PATH:$HOME/.cargo/bin"
 
 source <(kubectl completion zsh)
-source <(helm completion bash)
+source <(helm completion zsh)
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
