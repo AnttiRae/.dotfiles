@@ -53,24 +53,32 @@ return {
     { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
   }
   },
-  --
-  -- {
-  -- 	"williamboman/mason.nvim",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"lua-language-server", "stylua",
-  -- 			"html-lsp", "css-lsp" , "prettier"
-  -- 		},
-  -- 	},
-  -- },
-  --
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+  "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "stylua",
+        "html-lsp",
+        "css-lsp" ,
+        "prettier",
+        "ruff-lsp",
+        "ruff",
+        "debugpy",
+        "pyright",
+        "flake8",
+        "black",
+        "autopep8"
+      },
+    },
+   },
+  {
+  "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim", "lua", "vimdoc",
+       "html", "css"
+      },
+    },
+  },
 }
