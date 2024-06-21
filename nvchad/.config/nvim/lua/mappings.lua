@@ -34,3 +34,5 @@ map("n", "<leader>fs", function()
   builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
 
+map("n", "<leader>fu", vim.cmd.UndotreeToggle)
+
