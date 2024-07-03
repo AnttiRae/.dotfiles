@@ -56,7 +56,6 @@ return {
     { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
   }
   },
-<<<<<<< Updated upstream
   {
   "williamboman/mason.nvim",
     opts = {
@@ -85,28 +84,6 @@ return {
       },
     },
   },
-||||||| Stash base
-  --
-  -- {
-  -- 	"williamboman/mason.nvim",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"lua-language-server", "stylua",
-  -- 			"html-lsp", "css-lsp" , "prettier"
-  -- 		},
-  -- 	},
-  -- },
-  --
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
-=======
   {
     "tris203/precognition.nvim",
     event = "VeryLazy",
@@ -131,28 +108,7 @@ return {
         gg = { text = "gg", prio = 9 },
         PrevParagraph = { text = "{", prio = 8 },
         NextParagraph = { text = "}", prio = 8 },
+      }
     },
-    },
-}
-  --
-  -- {
-  -- 	"williamboman/mason.nvim",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"lua-language-server", "stylua",
-  -- 			"html-lsp", "css-lsp" , "prettier"
-  -- 		},
-  -- 	},
-  -- },
-  --
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
->>>>>>> Stashed changes
+  }
 }
