@@ -103,7 +103,6 @@ fi
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		"tmux_session_info 16 45"
-		# "hostname 33 0"
 		#"ifstat 30 255"
 		# "lan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
 		#"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
@@ -120,10 +119,11 @@ fi
 if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
 		#"earthquake 3 0"
-		"ifstat_sys 0 35"
+		#"ifstat_sys 0 35"
     #"kubernetes_context 0 35"
-		"pwd 16 45"
+		"pwd 0 35"
 		#"macos_notification_count 29 255"
+		"hostname 16 45"
 		#"mode_indicator 0 255"
 		#"mailcount 9 255"
 		# "now_playing 234 37"
