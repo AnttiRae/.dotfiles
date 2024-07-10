@@ -179,6 +179,6 @@ export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.local/scripts"
 export PATH="$PATH:$HOME/Scripts"
-
+eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
