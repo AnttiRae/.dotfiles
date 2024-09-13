@@ -71,7 +71,8 @@ return {
         "pyright",
         "flake8",
         "black",
-        "autopep8"
+        "autopep8",
+        "isort"
       },
     },
    },
