@@ -30,6 +30,10 @@ map("n", "<C-k>", function() harpoon:list():prev() end)
 
 -- telescope
 
+map("n", "<leader>gu", function() 
+  builtin.lsp_references()
+end)
+
 map("n", "<leader>fs", function() 
   builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
