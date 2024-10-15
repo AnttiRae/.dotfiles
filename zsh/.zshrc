@@ -177,6 +177,7 @@ alias "C=xclip"
 alias "v=xclip -o"
 alias "c=xclip -selection clipboard"
 
+alias trail='watch '
 alias sc='sesh connect $(sesh list | fzf)'
 
 PATH="$HOME/.local/bin:$PATH"
