@@ -164,8 +164,8 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH=$PATH:$(go env GOPATH)/bin
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 alias dotedit='cd $HOME/dotfiles/ && nvim .'
 alias ll='lsd -lh'
@@ -195,4 +195,5 @@ export PATH="$PATH:$HOME/.local/scripts"
 export PATH="$PATH:$HOME/Scripts"
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
+. "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
