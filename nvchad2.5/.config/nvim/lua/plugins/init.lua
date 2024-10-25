@@ -34,7 +34,10 @@ return {
 			},
 		}
 	end,
-
+	{
+		"sedm0784/vim-rainbow-trails",
+		cmd = { "RainbowTrails" },
+	},
 	{
 		"mbbill/undotree",
 		lazy = false,
