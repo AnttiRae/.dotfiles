@@ -47,11 +47,20 @@ nmap <leader>fw <Action>(TextSearchAction)
 
 nmap <leader>x <Action>(CloseContent)
 
+nmap <leader>a <Action>(GotoAction)
+
+nmap <leader>fc <Action>(FindSelectionInPath)
+
 nmap <Tab> <Action>(NextTab)
 
+nmap <leader>o <Action>(ActivateStructureToolWindow)
+
+nmap q <Action>(HideActiveWindow)
+
+nmap <leader>re <Action>(RenameElement)
+
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
 set nerdtree
 nmap <leader>e :NERDTreeFocus<CR>
 let g:NERDTreeMapCloseDir = '<BS>'
-
-
