@@ -35,11 +35,8 @@ set notimeout
 "" Map \r to the Reformat Code action
 nmap <leader>cf <Action>(ReformatCode)
 
-"" Map <leader>d to start debug
-map <leader>d <Action>(Debug)
-
 "" Map \b to toggle the breakpoint on the current line
-map \b <Action>(ToggleLineBreakpoint)
+nmap <leader>dd <Action>(ToggleLineBreakpoint)
 
 nmap <leader>ff <Action>(GotoFile)
 
@@ -52,12 +49,18 @@ nmap <leader>a <Action>(GotoAction)
 nmap <leader>fc <Action>(FindSelectionInPath)
 
 nmap <Tab> <Action>(NextTab)
+nmap <S-Tab> <Action>(PreviousTab)
 
 nmap <leader>o <Action>(ActivateStructureToolWindow)
 
 nmap q <Action>(HideActiveWindow)
 
 nmap <leader>re <Action>(RenameElement)
+
+nmap <leader>pp <Action>(ManageRecentProjects)
+nmap <leader>pd <Action>(Debug)
+nmap <leader>pr <Action>(Run)
+nmap <leader>pt <Action>(ActivateTerminalToolWindowActivateTerminalToolWindow)
 
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
