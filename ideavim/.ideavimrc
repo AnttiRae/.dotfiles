@@ -57,10 +57,12 @@ nmap q <Action>(HideActiveWindow)
 
 nmap <leader>re <Action>(RenameElement)
 
+nmap <leader>gb <Action>(Git.Branches)
+
 nmap <leader>pp <Action>(ManageRecentProjects)
 nmap <leader>pd <Action>(Debug)
 nmap <leader>pr <Action>(Run)
-nmap <leader>pt <Action>(ActivateTerminalToolWindowActivateTerminalToolWindow)
+nmap <leader>pt <Action>(ActivateTerminalToolWindow)
 
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
