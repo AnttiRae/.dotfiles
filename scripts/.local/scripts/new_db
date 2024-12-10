@@ -1,0 +1,36 @@
+#!/bin/bash
+
+PROJECT=${1:-db_tester}
+PORT=${2:-5432}
+IMAGE=${3:-postgres}
+
+# Function to display usage
+usage() {
+    echo "Usage: $0 [PROJECT_NAME] [PORT] [IMAGE]"
+    echo "  PROJECT_NAME: Name of the Docker container (default: pg_tester)"
+    echo "  PORT: Host port to map to container's PostgreSQL port (default: 5432)"
+    echo "  IMAGE: Docker image to use (default: postgres)"
+    exit 1
+}
+# Stop and remove the existing container
+echo "Stopping and removing any existing container named $PROJECT..."
+docker stop "$PROJECT" &>/dev/null || echo "No running container named $PROJECT to stop."
+docker rm "$PROJECT" &>/dev/null || echo "No container named $PROJECT to remove."
+
+# Run the new container
+echo "Starting a new container..."
+docker run \
+    --name "$PROJECT" \
+    -e POSTGRES_PASSWORD="$PROJECT" \
+    -e POSTGRES_USER="$PROJECT" \
+    -e POSTGRES_DB="$PROJECT" \
+    -p "$PORT:5432" \
+    -d "$IMAGE"
+
+# Check if the container started successfully
+if [ $? -eq 0 ]; then
+    echo "Container $PROJECT is running on port $PORT using image $IMAGE."
+else
+    echo "Failed to start the container. Please check your parameters and Docker setup."
+    exit 1
+fi
