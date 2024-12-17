@@ -1,8 +1,8 @@
-import = [
+general.import = [
     "~/.config/alacritty/themes/themes/catppuccin-mocha.toml.toml"
 ]
 
-live_config_reload = true
+general.live_config_reload = true
 
 [font.normal]
 family = "JetBrainsMonoNerdFont"
