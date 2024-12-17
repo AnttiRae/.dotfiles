@@ -46,7 +46,7 @@ nmap <leader>x <Action>(CloseContent)
 
 nmap <leader>a <Action>(GotoAction)
 
-nmap <leader>fc <Action>(FindSelectionInPath)
+nmap <leader>fc <Action>(GotoClass)
 
 nmap <Tab> <Action>(NextTab)
 nmap <S-Tab> <Action>(PreviousTab)
