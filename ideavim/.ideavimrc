@@ -58,6 +58,7 @@ nmap q <Action>(HideActiveWindow)
 nmap <leader>re <Action>(RenameElement)
 
 nmap <leader>gb <Action>(Git.Branches)
+nmap <leader>gc <Action>(GitCheckoutFromInputAction)
 
 nmap <leader>pp <Action>(ManageRecentProjects)
 nmap <leader>pd <Action>(Debug)
