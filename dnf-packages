@@ -1,0 +1,14 @@
+neovim
+stow
+git
+zsh
+alacritty
+helm
+kubectl
+go
+python3-pip
+direnv
+zoxide
+rust
+cargo
+tmux
