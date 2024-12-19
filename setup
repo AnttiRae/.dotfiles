@@ -72,7 +72,7 @@ if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
 
     stow -R fonts zsh p10k alacritty tmux 
 else
-    echo "'DNF' not found in the arguments. Skipping dnf commands."
+    echo "'DOTS' not found in the arguments. Skipping dots commands."
 fi
 
 
