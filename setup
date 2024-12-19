@@ -1,28 +1,106 @@
-!#/usr/bin/env bash
+#!/bin/bash
+
+if [[ " $@ " =~ " HELP " ]]; then
+    echo "Usage: $0 [OPTIONS]"
+    echo
+    echo "This script installs various tools and configurations based on the provided arguments."
+    echo "Pass one or more of the following keywords to control what is installed:"
+    echo
+    echo "  HELP       Display this help text."
+    echo "  ZSH        Install Oh My Zsh, Zsh plugins (autosuggestions, powerlevel10k, syntax highlighting)."
+    echo "  ATUIN      Install Atuin shell history manager."
+    echo "  PYTHON     Install Pyenv and Python pip packages from 'pip-packages' file."
+    echo "  DNF        Install packages listed in 'dnf-packages' file (using dnf)."
+    echo "  DOTS       Update git submodules and create symlinks for dotfiles using 'stow'."
+    echo "  KDE        Import KDE configuration using 'konsave' from 'thinkpad-a.knsv'."
+    echo "  FLATPAKS   Install Flatpak applications listed in 'flatpaks' file."
+    echo
+    echo "Examples:"
+    echo "  $0 ALL              Install everything."
+    echo "  $0 ZSH FLATPAKS     Install Zsh and Flatpaks."
+    echo "  $0 HELP             Display this help text."
+    return 1 2>/dev/null
+    exit 1
+
+fi
+
 
 echo "OHMYZSH INSTALL"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [[ " $@ " =~ " ZSH " ]] || [[ " $@ " =~ " ALL " ]]; then
+    # Run the commands if "KDE" is found in the arguments
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "ZSH PLUGINS"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    echo "ZSH PLUGINS"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+    chsh -s $(which zsh)
+else
+    echo "'ZSH' not found in the arguments. Skipping ZSH commands."
+fi
 
 echo "ATUIN INSTALL"
-curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+if [[ " $@ " =~ " ATUIN " ]] || [[ " $@ " =~ " ALL " ]]; then
+    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+else
+    echo "'ATUIN' not found in the arguments. Skipping atuin install."
+fi
 
-echo "PYENV INSTALL"
-curl https://pyenv.run | bash
+echo "PYTHON STUFF INSTALL"
+if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "PYENV INSTALL"
+    curl https://pyenv.run | bash
+    echo "PIP PACKAGES"
+    pip install -r pip-packages
+else
+    echo "'PYTHON' not found in the arguments. Skipping python commands."
+fi
 
 echo "DNF PACKAGES"
-sudo dnf install $(cat dnf-packages)
+if [[ " $@ " =~ " DNF " ]] || [[ " $@ " =~ " ALL " ]]; then
+    sudo dnf install $(cat dnf-packages)
+else
+    echo "'DNF' not found in the arguments. Skipping dnf commands."
+fi
 
-echo "PIP PACKAGES"
-pip install -r pip-packages
 
-stow -R fonts zsh p10k alacritty
+if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    git submodule update --init --recursive
 
-konsave -i ./thinkpad-a.knsv
-konsave -a thinkpad-a
+    stow -R fonts zsh p10k alacritty tmux 
+else
+    echo "'DNF' not found in the arguments. Skipping dnf commands."
+fi
+
+
+echo "KONSAVE IMPORT"
+if [[ " $@ " =~ " KDE " ]] || [[ " $@ " =~ " ALL " ]]; then
+    # Run the commands if "KDE" is found in the arguments
+    konsave -i ./thinkpad-a.knsv
+    konsave -a thinkpad-a
+else
+    echo "'KDE' not found in the arguments. Skipping konsave commands."
+fi
+
+echo "FLATPAKS INSTALL"
+if [[ " $@ " =~ " FLATPAKS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    # Run the commands if "KDE" is found in the arguments
+    flatpak install -y $(cat flatpaks)
+else
+    echo "'FLATPAKS' not found in the arguments. Skipping flatpak commands."
+fi
+
+echo "RPM FUSION AND CODECS INSTALL"
+if [[ " $@ " =~ " FUSION " ]] || [[ " $@ " =~ " ALL " ]]; then
+    sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+    sudo dnf install intel-media-driver
+    sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+
+else
+    echo "'FUSION' not found in the arguments. Skipping FUSION commands."
+fi
+
