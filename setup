@@ -24,10 +24,28 @@ if [[ " $@ " =~ " HELP " ]]; then
 
 fi
 
+if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "DOCKER INSTALL"
+    sudo dnf -y install dnf-plugins-core
+    sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo systemctl enable --now docker
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+fi
 
-echo "OHMYZSH INSTALL"
+
+if [[ " $@ " =~ " MINIKUBE " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "MINIKUBE INSTALL"
+    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+    sudo rpm -Uvh minikube-latest.x86_64.rpm
+    rm minikube-latest.x86_64.rpm
+fi
+
+
 if [[ " $@ " =~ " ZSH " ]] || [[ " $@ " =~ " ALL " ]]; then
-    # Run the commands if "KDE" is found in the arguments
+    echo "OHMYZSH INSTALL"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
     echo "ZSH PLUGINS"
@@ -38,69 +56,54 @@ if [[ " $@ " =~ " ZSH " ]] || [[ " $@ " =~ " ALL " ]]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
     chsh -s $(which zsh)
-else
-    echo "'ZSH' not found in the arguments. Skipping ZSH commands."
 fi
 
-echo "ATUIN INSTALL"
 if [[ " $@ " =~ " ATUIN " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "ATUIN INSTALL"
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-else
-    echo "'ATUIN' not found in the arguments. Skipping atuin install."
 fi
 
-echo "PYTHON STUFF INSTALL"
 if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "PYENV INSTALL"
     curl https://pyenv.run | bash
     echo "PIP PACKAGES"
     pip install -r pip-packages
-else
-    echo "'PYTHON' not found in the arguments. Skipping python commands."
 fi
 
-echo "DNF PACKAGES"
 if [[ " $@ " =~ " DNF " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "DNF PACKAGES"
     sudo dnf install $(cat dnf-packages)
-else
-    echo "'DNF' not found in the arguments. Skipping dnf commands."
 fi
 
 
 if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "STOWING DOT FILES"
     git submodule update --init --recursive
 
     stow -R fonts zsh p10k alacritty tmux 
-else
-    echo "'DOTS' not found in the arguments. Skipping dots commands."
 fi
 
 
-echo "KONSAVE IMPORT"
 if [[ " $@ " =~ " KDE " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "KONSAVE IMPORT"
     # Run the commands if "KDE" is found in the arguments
     konsave -i ./thinkpad-a.knsv
     konsave -a thinkpad-a
-else
-    echo "'KDE' not found in the arguments. Skipping konsave commands."
 fi
 
-echo "FLATPAKS INSTALL"
 if [[ " $@ " =~ " FLATPAKS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "FLATPAKS INSTALL"
     # Run the commands if "KDE" is found in the arguments
     flatpak install -y $(cat flatpaks)
-else
-    echo "'FLATPAKS' not found in the arguments. Skipping flatpak commands."
 fi
 
-echo "RPM FUSION AND CODECS INSTALL"
 if [[ " $@ " =~ " FUSION " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "RPM FUSION AND CODECS INSTALL"
     sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
     sudo dnf install intel-media-driver
     sudo dnf swap ffmpeg-free ffmpeg --allowerasing
-
-else
-    echo "'FUSION' not found in the arguments. Skipping FUSION commands."
 fi
+
+echo "DONE"
 
