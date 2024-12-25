@@ -84,7 +84,7 @@ if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "STOWING DOT FILES"
     git submodule update --init --recursive
 
-    stow -R fonts zsh p10k alacritty tmux
+    stow -R fonts zsh p10k alacritty tmux scripts
 fi
 
 
