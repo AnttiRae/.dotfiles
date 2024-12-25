@@ -24,6 +24,7 @@ if [[ " $@ " =~ " HELP " ]]; then
 
 fi
 
+
 if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "DOCKER INSTALL"
     sudo dnf -y install dnf-plugins-core
@@ -58,10 +59,12 @@ if [[ " $@ " =~ " ZSH " ]] || [[ " $@ " =~ " ALL " ]]; then
     chsh -s $(which zsh)
 fi
 
+
 if [[ " $@ " =~ " ATUIN " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "ATUIN INSTALL"
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 fi
+
 
 if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "PYENV INSTALL"
@@ -69,6 +72,7 @@ if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "PIP PACKAGES"
     pip install -r pip-packages
 fi
+
 
 if [[ " $@ " =~ " DNF " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "DNF PACKAGES"
@@ -80,7 +84,17 @@ if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "STOWING DOT FILES"
     git submodule update --init --recursive
 
-    stow -R fonts zsh p10k alacritty tmux 
+    stow -R fonts zsh p10k alacritty tmux
+fi
+
+
+if [[ " $@ " =~ " JETBRAINS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "JETRBAINS TOOLBOX AND IDEAVIM"
+    wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.5.2.35332.tar.gz -P /tmp/
+    tar -xzf /tmp/jetbrains-toolbox-2.5.2.35332.tar.gz -C  /tmp
+    mv /tmp/**/jetbrains-toolbox ~/Toolbox
+    ~/Toolbox/jetbrains-toolbox
+    stow -R ideavim
 fi
 
 
@@ -91,11 +105,13 @@ if [[ " $@ " =~ " KDE " ]] || [[ " $@ " =~ " ALL " ]]; then
     konsave -a thinkpad-a
 fi
 
+
 if [[ " $@ " =~ " FLATPAKS " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "FLATPAKS INSTALL"
     # Run the commands if "KDE" is found in the arguments
     flatpak install -y $(cat flatpaks)
 fi
+
 
 if [[ " $@ " =~ " FUSION " ]] || [[ " $@ " =~ " ALL " ]]; then
     echo "RPM FUSION AND CODECS INSTALL"
@@ -104,6 +120,7 @@ if [[ " $@ " =~ " FUSION " ]] || [[ " $@ " =~ " ALL " ]]; then
     sudo dnf install intel-media-driver
     sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 fi
+
 
 echo "DONE"
 
