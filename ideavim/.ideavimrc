@@ -54,7 +54,7 @@ nmap <S-Tab> <Action>(PreviousTab)
 nmap <leader>o <Action>(ActivateStructureToolWindow)
 
 nmap q <Action>(HideActiveWindow)
-
+nmap <leader>c <Action>(CommentByLineComment)
 nmap <leader>re <Action>(RenameElement)
 
 nmap <leader>gb <Action>(Git.Branches)
