@@ -178,7 +178,7 @@ alias "v=xclip -o"
 alias "c=xclip -selection clipboard"
 
 alias trail='watch '
-alias sc='sesh connect $(sesh list | fzf)'
+alias ta='tmux attach-session'
 
 PATH="$HOME/.local/bin:$PATH"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
