@@ -1,13 +1,13 @@
 local options = {
 
 	base46 = {
-		theme = "rosepine", -- default theme
+		theme = "decay", -- default theme
 		hl_add = {},
 		hl_override = {},
 		integrations = {},
 		changed_themes = {},
 		transparency = false,
-		theme_toggle = { "rosepine", "one_light" },
+		theme_toggle = { "decay", "one_light" },
 	},
 
 	ui = {

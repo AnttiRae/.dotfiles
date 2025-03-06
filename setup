@@ -1,0 +1,126 @@
+#!/bin/bash
+
+if [[ " $@ " =~ " HELP " ]]; then
+    echo "Usage: $0 [OPTIONS]"
+    echo
+    echo "This script installs various tools and configurations based on the provided arguments."
+    echo "Pass one or more of the following keywords to control what is installed:"
+    echo
+    echo "  HELP       Display this help text."
+    echo "  ZSH        Install Oh My Zsh, Zsh plugins (autosuggestions, powerlevel10k, syntax highlighting)."
+    echo "  ATUIN      Install Atuin shell history manager."
+    echo "  PYTHON     Install Pyenv and Python pip packages from 'pip-packages' file."
+    echo "  DNF        Install packages listed in 'dnf-packages' file (using dnf)."
+    echo "  DOTS       Update git submodules and create symlinks for dotfiles using 'stow'."
+    echo "  KDE        Import KDE configuration using 'konsave' from 'thinkpad-a.knsv'."
+    echo "  FLATPAKS   Install Flatpak applications listed in 'flatpaks' file."
+    echo
+    echo "Examples:"
+    echo "  $0 ALL              Install everything."
+    echo "  $0 ZSH FLATPAKS     Install Zsh and Flatpaks."
+    echo "  $0 HELP             Display this help text."
+    return 1 2>/dev/null
+    exit 1
+
+fi
+
+
+if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "DOCKER INSTALL"
+    sudo dnf -y install dnf-plugins-core
+    sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo systemctl enable --now docker
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+fi
+
+
+if [[ " $@ " =~ " MINIKUBE " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "MINIKUBE INSTALL"
+    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+    sudo rpm -Uvh minikube-latest.x86_64.rpm
+    rm minikube-latest.x86_64.rpm
+fi
+
+
+if [[ " $@ " =~ " ZSH " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "OHMYZSH INSTALL"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    echo "ZSH PLUGINS"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+    chsh -s $(which zsh)
+fi
+
+
+if [[ " $@ " =~ " ATUIN " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "ATUIN INSTALL"
+    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+fi
+
+
+if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "PYENV INSTALL"
+    curl https://pyenv.run | bash
+    echo "PIP PACKAGES"
+    pip install -r pip-packages
+fi
+
+
+if [[ " $@ " =~ " DNF " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "DNF PACKAGES"
+    sudo dnf install $(cat dnf-packages)
+fi
+
+
+if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "STOWING DOT FILES"
+    git submodule update --init --recursive
+
+    stow -R fonts zsh p10k alacritty tmux scripts
+fi
+
+
+if [[ " $@ " =~ " JETBRAINS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "JETRBAINS TOOLBOX AND IDEAVIM"
+    wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.5.2.35332.tar.gz -P /tmp/
+    tar -xzf /tmp/jetbrains-toolbox-2.5.2.35332.tar.gz -C  /tmp
+    mv /tmp/**/jetbrains-toolbox ~/Toolbox
+    ~/Toolbox/jetbrains-toolbox
+    stow -R ideavim
+fi
+
+
+if [[ " $@ " =~ " KDE " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "KONSAVE IMPORT"
+    # Run the commands if "KDE" is found in the arguments
+    konsave -i ./thinkpad-a.knsv
+    konsave -a thinkpad-a
+fi
+
+
+if [[ " $@ " =~ " FLATPAKS " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "FLATPAKS INSTALL"
+    # Run the commands if "KDE" is found in the arguments
+    flatpak install -y $(cat flatpaks)
+fi
+
+
+if [[ " $@ " =~ " FUSION " ]] || [[ " $@ " =~ " ALL " ]]; then
+    echo "RPM FUSION AND CODECS INSTALL"
+    sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+    sudo dnf install intel-media-driver
+    sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+fi
+
+
+echo "DONE"
+
