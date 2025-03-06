@@ -37,6 +37,11 @@ nmap <leader>cf <Action>(ReformatCode)
 
 "" Map \b to toggle the breakpoint on the current line
 nmap <leader>dd <Action>(ToggleLineBreakpoint)
+nmap <leader>df <Action>(Resume)
+nmap <leader>de <Action>(QuickEvaluateExpression)
+nmap <leader>dp <Action>(EvaluateExpression)
+nmap <leader>dr <Action>(Rerun)
+nmap <leader>dt <Action>(Stop)
 
 nmap <leader>ff <Action>(GotoFile)
 
