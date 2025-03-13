@@ -53,6 +53,8 @@ nmap <leader>a <Action>(GotoAction)
 
 nmap <leader>fc <Action>(GotoClass)
 
+nmap <leader>. <Action>(ShowIntentionActions)
+
 nmap <Tab> <Action>(NextTab)
 nmap <S-Tab> <Action>(PreviousTab)
 
