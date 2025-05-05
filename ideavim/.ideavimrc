@@ -49,7 +49,9 @@ nmap <leader>fw <Action>(TextSearchAction)
 
 nmap <leader>x <Action>(CloseContent)
 
-nmap <leader>a <Action>(GotoAction)
+nmap <leader>pa <Action>(GotoAction)
+
+nmap <leader>aa <Action>(GotoAction)
 
 nmap <leader>fc <Action>(GotoClass)
 
