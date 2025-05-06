@@ -56,21 +56,14 @@ if [[ " $@ " =~ " ZSH " ]] || [[ " $@ " =~ " ALL " ]]; then
   chsh -s $(which zsh)
 fi
 
-if [[ " $@ " =~ " ATUIN " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "ATUIN INSTALL"
-  curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-fi
-
 if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "PYENV INSTALL"
   curl https://pyenv.run | bash
-  echo "PIP PACKAGES"
-  pip install -r pip-packages
 fi
 
-if [[ " $@ " =~ " DNF " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "DNF PACKAGES"
-  sudo dnf install $(cat dnf-packages)
+if [[ " $@ " =~ " PACMAN " ]] || [[ " $@ " =~ " ALL " ]]; then
+  echo "PACMAN PACKAGES"
+  sudo pacman -S - < pacman-packages
 fi
 
 if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
@@ -89,25 +82,22 @@ if [[ " $@ " =~ " JETBRAINS " ]] || [[ " $@ " =~ " ALL " ]]; then
   stow -R ideavim
 fi
 
+if [[ " $@ " =~ " YAY " ]] || [[ " $@ " =~ " ALL " ]]; then
+  echo "YAY INSTALL"
+  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+fi
+
+if [[ " $@ " =~ " YAY_PACKAGES " ]] || [[ " $@ " =~ " ALL " ]]; then
+  echo "YAY PACKAGES"
+  # deliberately split on all whitespace, but don't do globbing
+  yay -S - < yay-packages
+fi
+
 if [[ " $@ " =~ " KDE " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "KONSAVE IMPORT"
   # Run the commands if "KDE" is found in the arguments
   konsave -i ./thinkpad-a.knsv
   konsave -a thinkpad-a
-fi
-
-if [[ " $@ " =~ " FLATPAKS " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "FLATPAKS INSTALL"
-  # Run the commands if "KDE" is found in the arguments
-  flatpak install -y $(cat flatpaks)
-fi
-
-if [[ " $@ " =~ " FUSION " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "RPM FUSION AND CODECS INSTALL"
-  sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-  sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
-  sudo dnf install intel-media-driver
-  sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 fi
 
 echo "DONE"
