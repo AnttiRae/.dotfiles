@@ -45,7 +45,7 @@ nmap <leader>dt <Action>(Stop)
 
 nmap <leader>ff <Action>(GotoFile)
 
-nmap <leader>fw <Action>(TextSearchAction)
+nmap <leader>/ <Action>(TextSearchAction)
 
 nmap <leader>x <Action>(CloseContent)
 
@@ -57,8 +57,8 @@ nmap <leader>fc <Action>(GotoClass)
 
 nmap <leader>. <Action>(ShowIntentionActions)
 
-nmap <Tab> <Action>(NextTab)
-nmap <S-Tab> <Action>(PreviousTab)
+nmap <S-l> <Action>(NextTab)
+nmap <S-h> <Action>(PreviousTab)
 
 nmap <leader>o <Action>(ActivateStructureToolWindow)
 
