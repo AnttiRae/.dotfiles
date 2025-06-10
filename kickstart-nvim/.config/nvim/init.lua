@@ -742,6 +742,36 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     keys = {
       {
+        '<leader>tf',
+        function()
+          -- If autoformat is currently disabled for this buffer,
+          -- then enable it, otherwise disable it
+          if vim.b.disable_autoformat then
+            vim.cmd 'FormatEnable'
+            vim.notify 'Enabled autoformat for current buffer'
+          else
+            vim.cmd 'FormatDisable!'
+            vim.notify 'Disabled autoformat for current buffer'
+          end
+        end,
+        desc = 'Toggle autoformat for current buffer',
+      },
+      {
+        '<leader>tF',
+        function()
+          -- If autoformat is currently disabled globally,
+          -- then enable it globally, otherwise disable it globally
+          if vim.g.disable_autoformat then
+            vim.cmd 'FormatEnable'
+            vim.notify 'Enabled autoformat globally'
+          else
+            vim.cmd 'FormatDisable'
+            vim.notify 'Disabled autoformat globally'
+          end
+        end,
+        desc = 'Toggle autoformat globally',
+      },
+      {
         '<leader>f',
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
@@ -750,29 +780,51 @@ require('lazy').setup({
         desc = '[F]ormat buffer',
       },
     },
+    config = function(_, opts)
+      require('conform').setup(opts)
+
+      vim.api.nvim_create_user_command('FormatDisable', function(args)
+        if args.bang then
+          -- :FormatDisable! disables autoformat for this buffer only
+          vim.b.disable_autoformat = true
+        else
+          -- :FormatDisable disables autoformat globally
+          vim.g.disable_autoformat = true
+        end
+      end, {
+        desc = 'Disable autoformat-on-save',
+        bang = true, -- allows the ! variant
+      })
+
+      vim.api.nvim_create_user_command('FormatEnable', function()
+        vim.b.disable_autoformat = false
+        vim.g.disable_autoformat = false
+      end, {
+        desc = 'Re-enable autoformat-on-save',
+      })
+    end,
+
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
-        else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
         end
+        local disable_filetypes = { c = false, cpp = false }
+        return {
+          timeout_ms = 500,
+          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+        }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        python = { 'black' },
+        javascript = { { 'prettierd', 'prettier' } },
+        typescript = { { 'prettierd', 'prettier' } },
+        typescriptreact = { { 'prettierd', 'prettier' } },
+        javascriptreact = { { 'prettierd', 'prettier' } },
+        css = { { 'prettierd', 'prettier' } },
+        cs = { 'csharpier' },
       },
     },
   },
@@ -894,7 +946,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'retrobox'
     end,
   },
 
@@ -984,7 +1036,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!

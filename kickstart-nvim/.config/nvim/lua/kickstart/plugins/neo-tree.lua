@@ -11,14 +11,14 @@ return {
   },
   lazy = false,
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
     filesystem = {
       filtered_items = {
         visible = true,
         hide_dotfiles = false,
-        hide_gitignored = true,
+        hide_gitignored = false,
       },
       window = {
         mappings = {
