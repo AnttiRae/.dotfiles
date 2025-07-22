@@ -83,7 +83,7 @@ plugins=(
 	colored-man-pages
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	docker
+docker
 	direnv
   kubectl
   kubectx
