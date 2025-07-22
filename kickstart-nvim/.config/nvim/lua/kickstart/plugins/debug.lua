@@ -23,8 +23,29 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'msfussenegger/nvim-dap-python',
   },
   keys = {
+    { '<leader>d', group = 'debug' },
+    { '<leader>dc', '<Cmd>lua require"dap".continue()<CR>', desc = 'continue' },
+    { '<leader>dl', '<Cmd>lua require"dap".run_last()<CR>', desc = 'run last' },
+    { '<leader>dq', '<Cmd>lua require"dap".terminate()<CR>', desc = 'terminate' },
+    { '<leader>dh', '<Cmd>lua require"dap".stop()<CR>', desc = 'stop' },
+    { '<leader>dn', '<Cmd>lua require"dap".step_over()<CR>', desc = 'step over' },
+    { '<leader>ds', '<Cmd>lua require"dap".step_into()<CR>', desc = 'step into' },
+    { '<leader>dS', '<Cmd>lua require"dap".step_out()<CR>', desc = 'step out' },
+    { '<leader>db', '<Cmd>lua require"dap".toggle_breakpoint()<CR>', desc = 'toggle br' },
+    { '<leader>dB', '<Cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', desc = 'set br condition' },
+    { '<leader>dp', '<Cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = 'set log br' },
+    { '<leader>dr', '<Cmd>lua require"dap".repl.open()<CR>', desc = 'REPL open' },
+    { '<leader>dk', '<Cmd>lua require"dap".up()<CR>', desc = 'up callstack' },
+    { '<leader>dj', '<Cmd>lua require"dap".down()<CR>', desc = 'down callstack' },
+    { '<leader>di', '<Cmd>lua require"dap.ui.widgets".hover()<CR>', desc = 'info' },
+    { '<leader>d?', '<Cmd>lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes)<CR>', desc = 'scopes' },
+    { '<leader>df', '<Cmd>Telescope dap frames<CR>', desc = 'search frames' },
+    { '<leader>dC', '<Cmd>Telescope dap commands<CR>', desc = 'search commands' },
+    { '<leader>dL', '<Cmd>Telescope dap list_breakpoints<CR>', desc = 'search breakpoints' },
+
     -- Basic debugging keymaps, feel free to change to your liking!
     {
       '<F5>',
@@ -55,14 +76,14 @@ return {
       desc = 'Debug: Step Out',
     },
     {
-      '<leader>b',
+      '<leader>db',
       function()
         require('dap').toggle_breakpoint()
       end,
       desc = 'Debug: Toggle Breakpoint',
     },
     {
-      '<leader>B',
+      '<leader>dB',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end,
@@ -122,16 +143,16 @@ return {
     }
 
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
@@ -145,5 +166,9 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+    require('dap-python').setup()
+    local dap_python = require 'dap-python'
+    dap_python.setup 'python'
+    dap_python.test_runner = 'pytest'
   end,
 }
