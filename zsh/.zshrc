@@ -187,6 +187,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 source <(kubectl completion zsh)
 source <(helm completion zsh)
+source <(talosctl completion zsh)
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
