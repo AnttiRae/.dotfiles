@@ -93,6 +93,14 @@ RPS1='$(kubectx_prompt_info)'
 
 source $ZSH/oh-my-zsh.sh
 
+
+# FUNCTIONS
+
+irebase() {
+  local base="${1:-main}"
+  git rebase -i $(git merge-base $base HEAD)
+}
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -187,7 +195,6 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 source <(kubectl completion zsh)
 source <(helm completion zsh)
-source <(talosctl completion zsh)
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
