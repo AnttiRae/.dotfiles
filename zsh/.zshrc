@@ -87,6 +87,7 @@ plugins=(
 	direnv
   kubectl
   kubectx
+  zsh-vi-mode
 )
 
 RPS1='$(kubectx_prompt_info)'
