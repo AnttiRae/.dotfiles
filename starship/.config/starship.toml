@@ -20,9 +20,10 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:color_blue bg:color_bg3)\
+[](fg:color_blue bg:color_blue)\
 $docker_context\
 $kubernetes\
+[](fg:color_blue bg:color_bg3)\
 $direnv\
 [](fg:color_bg3 bg:color_bg1)\
 $time\
@@ -172,9 +173,13 @@ vimcmd_replace_symbol = '[](bold fg:color_purple)'
 vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 
 [direnv]
+style = "bg:color_bg3"
+format = '[[ $symbol( $version) (\($virtualenv\))](fg:color_fg0 bg:color_blue)]($style)'
 disabled = false
 
 [kubernetes]
+style = "bg:color_bg3"
+format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
 disabled = false
 
 [gcloud]
