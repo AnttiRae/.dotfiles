@@ -1,3 +1,6 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "nushell/.config/nushell/plugins/git-aliases.nu"]
+	path = nushell/.config/nushell/plugins/git-aliases.nu
+	url = https://github.com/KamilKleina/git-aliases.nu.git
