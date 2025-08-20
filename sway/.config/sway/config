@@ -18,8 +18,12 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path |  rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 2 -theme gruvbox-dark | xargs swaymsg exec --
-set $screenshot wayshot -s "$(slurp)" --stdout | wl-copy
+# set $menu dmenu_path |  rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 2 -theme gruvbox-dark | xargs swaymsg exec --
+set $menu wmenu-run
+set $screenshot grim -g "$(slurp)" - | wl-copy
+
+
+
 
 ### Output configuration
 #
@@ -31,7 +35,7 @@ set $screenshot wayshot -s "$(slurp)" --stdout | wl-copy
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output HDMI-A-1 res 1920x1080 transform 270
+# output HDMI-A-1 res 1920x1080 transform 270
 
 ### Idle configuration
 #
@@ -84,7 +88,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+x kill
 
 # Start your launcher
-bindsym $mod+d exec $menu
+bindsym $mod+r exec $menu
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -107,7 +111,6 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym $mod+comma exec playerctl previous
 bindsym $mod+period exec playerctl next
 bindsym $mod+slash exec playerctl play-pause
-
 
 
 #
@@ -140,6 +143,8 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+bindsym $mod+z workspace back_and_forth
 #
 # Workspaces:
 #
@@ -227,7 +232,7 @@ bindsym Right resize grow width 10px
 bindsym Return mode "default"
 bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+# bindsym $mod+r mode "resize"
 
 #
 # Status Bar:
