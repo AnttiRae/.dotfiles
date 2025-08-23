@@ -97,7 +97,6 @@ disabled = false
 show_always = false
 
 [directory]
-home_symbol = "⌂"
 truncation_length = 3
 truncation_symbol = "../"
 read_only = " ◈"
