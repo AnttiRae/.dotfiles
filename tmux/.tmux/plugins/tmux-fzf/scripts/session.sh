@@ -11,7 +11,7 @@ fi
 
 if [[ -z "$TMUX_FZF_SWITCH_CURRENT" ]]; then
     current_session=$(tmux display-message -p | sed -e 's/^\[//' -e 's/\].*//')
-    sessions=$(echo "$sessions" | grep -v "^$current_session: " | sort -k2 -nr)
+    sessions=$(echo "$sessions" | grep -v "^$current_session: ")
 fi
 
 FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --header='Select an action.'"
@@ -35,7 +35,10 @@ if [[ "$action" != "detach" ]]; then
         target_origin=$(echo "$target_origin" | sed -E "s/\[current\]/$current_session:/")
     fi
     if [[ "$action" == "new" || "$action" == "rename" ]]; then
-        session_name=$(tmux command-prompt -p "Session Name:" "display-message -p '%%'")
+        mkfifo /tmp/tmux_fzf_session_name
+        tmux split-window -v -l 30% -b "bash -c 'printf \"Session Name: \" && read session_name && echo \"\$session_name\" > /tmp/tmux_fzf_session_name'" &
+        session_name=$(cat /tmp/tmux_fzf_session_name)
+        rm /tmp/tmux_fzf_session_name
         if [ -z "$session_name" ]; then
             exit
         fi
@@ -62,4 +65,3 @@ elif [[ "$action" == "kill" ]]; then
 elif [[ "$action" == "rename" ]]; then
     tmux rename-session -t "$target" "$session_name"
 fi
-
