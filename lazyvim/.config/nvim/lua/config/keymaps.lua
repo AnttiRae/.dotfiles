@@ -12,3 +12,7 @@ local map = vim.keymap.set
 map("n", "<leader>x", function()
   Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
+
+map("n", "q", "<nop>", { noremap = true })
+map("n", "Q", "q", { noremap = true, desc = "Record macro" })
+map("n", "<M-q>", "Q", { noremap = true, desc = "Replay last register" })
