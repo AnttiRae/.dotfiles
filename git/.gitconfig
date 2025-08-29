@@ -15,5 +15,7 @@
     conflictStyle = zdiff3
 
 [user]
-	name = Antti Rae
 	email = antti.rae@anders.com
+	name = Antti Rae
+[init]
+	defaultBranch = main

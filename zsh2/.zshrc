@@ -103,3 +103,11 @@ tns() {
   tmux new-session -d -s "$session_name"
 }
 
+
+# Created by `pipx` on 2025-08-21 11:48:18
+export PATH="$PATH:/home/arae/.local/bin"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
