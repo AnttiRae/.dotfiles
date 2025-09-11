@@ -73,6 +73,13 @@ if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
   stow -R fonts zsh p10k alacritty tmux scripts
 fi
 
+
+if [[ " $@ " =~ " TMUX " ]] || [[ " $@ " =~ " ALL " ]]; then
+  echo "TMUX CONFIG"
+  
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+fi
 if [[ " $@ " =~ " JETBRAINS " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "JETRBAINS TOOLBOX AND IDEAVIM"
   wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.5.2.35332.tar.gz -P /tmp/
