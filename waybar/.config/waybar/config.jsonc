@@ -20,10 +20,12 @@
 
     "modules-left": [
         "sway/workspaces",
-        "sway/mode"
+        "sway/mode",
+        "sway/window",
     ],
     "modules-center": [
-        "sway/window"
+        "clock#date",
+        "clock#time",
     ],
     "modules-right": [
         "custom/waybar-mpris",
@@ -31,31 +33,15 @@
         "cpu",
         "temperature",
         "battery",
-	"pulseaudio",
-	"custom/waybar-mpris",
+	"pulseaudio#output",
+	"pulseaudio#input",
         "tray",
-        "clock#date",
-        "clock#time"
     ],
 
 
     // -------------------------------------------------------------------------
     // Modules
     // -------------------------------------------------------------------------
-    "custom/waybar-mpris": {
-        "return-type": "json",
-        "exec": "waybar-mpris --position --autofocus",
-        "on-click": "waybar-mpris --send toggle",
-        // This option will switch between players on right click.
-        "on-click-right": "waybar-mpris --send next",
-        // The options below will switch the selected player on scroll
-        "on-scroll-up": "waybar-mpris --send player-next",
-            // "on-scroll-down": "waybar-mpris --send player-prev",
-        // The options below will go to next/previous track on scroll
-            // "on-scroll-up": "waybar-mpris --send next",
-            // "on-scroll-down": "waybar-mpris --send prev",
-        "escape": true
-    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -194,7 +180,7 @@
         "icon-size": 21,
         "spacing": 10
     },
-    "pulseaudio": {
+    "pulseaudio#output": {
         // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
@@ -212,6 +198,24 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-    }
+    },
+	"pulseaudio#input": {
+	    "format-source": " {volume}%",
+	    "format-source-muted": "  muted",
+	    "format": "{format_source}",
+	    "scroll-step": 5,
+	    "smooth-scrolling-threshold": 1,
+	    "max-volume": 100,
+	    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+	    "on-click-middle": "pavucontrol",
+	    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+	    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+	},
+	"custom/waybar-mpris": {
+        "return-type": "json",
+        "exec": "waybar-mpris --position --autofocus",
+        "on-click": "waybar-mpris --send toggle",
+        "escape": true
+    },
 }
 

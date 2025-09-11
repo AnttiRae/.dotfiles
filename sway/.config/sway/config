@@ -19,10 +19,8 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path |  rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 2 -theme gruvbox-dark | xargs swaymsg exec --
-set $menu wmenu-run
+set $menu fuzzel
 set $screenshot grim -g "$(slurp)" - | wl-copy
-
-
 
 
 ### Output configuration
@@ -100,18 +98,26 @@ floating_modifier $mod normal
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-bindsym $mod+p exec firefox
+bindsym $mod+p exec zen-browser
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 #
-# Media controls
+# Media controls and other special keys
 #
 
-bindsym $mod+comma exec playerctl previous
-bindsym $mod+period exec playerctl next
-bindsym $mod+slash exec playerctl play-pause
-
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym f8 exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86Search exec bemenu-run
 
 #
 # screenshot/cast
@@ -127,22 +133,12 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # Move the focused window with the same, but add Shift
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 bindsym $mod+z workspace back_and_forth
 #
@@ -222,17 +218,17 @@ bindsym $down resize grow height 10px
 bindsym $up resize shrink height 10px
 bindsym $right resize grow width 10px
 
-# Ditto, with arrow keys
-bindsym Left resize shrink width 10px
-bindsym Down resize grow height 10px
-bindsym Up resize shrink height 10px
-bindsym Right resize grow width 10px
+
+bindsym $left+Shift resize shrink width 50px
+bindsym $down+Shift resize grow height 50px
+bindsym $up+Shift resize shrink height 50px
+bindsym $right+Shift resize grow width 50px
 
 # Return to default mode
 bindsym Return mode "default"
 bindsym Escape mode "default"
 }
-# bindsym $mod+r mode "resize"
+bindsym $mod+Shift+r mode "resize"
 
 #
 # Status Bar:
@@ -262,12 +258,10 @@ workspace 4 output DP-3
 workspace 5 output DP-3
 workspace 6 output DP-3
 workspace 7 output DP-3
-workspace 8 output DP-1
-workspace 9 output HDMI-A-1
 
-assign [app_id="tidal-hifi"] workspace 4
-assign [class="discord"] workspace 4
-assign [class="steam"] workspace 2
+assign [app_id="tidal-hifi"] workspace 5
+assign [class="discord"] workspace 5
+assign [class="steam"] workspace 5
 
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
