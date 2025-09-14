@@ -70,7 +70,6 @@ export PATH="$PATH:$HOME/.local/scripts"
 export PATH="$PATH:$HOME/Scripts"
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
-. "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
 export NVM_DIR="$HOME/.config/nvm"
@@ -79,10 +78,10 @@ export NVM_DIR="$HOME/.config/nvm"
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/arae/google-cloud-sdk/path.zsh.inc' ]; then . '/home/arae/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '${HOME}/google-cloud-sdk/path.zsh.inc' ]; then . '${HOME}/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/arae/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/arae/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '${HOME}/google-cloud-sdk/completion.zsh.inc' ]; then . '${HOME}/google-cloud-sdk/completion.zsh.inc'; fi
 
 # FUNCTIONS
 
@@ -104,10 +103,9 @@ tns() {
 }
 
 
-# Created by `pipx` on 2025-08-21 11:48:18
-export PATH="$PATH:/home/arae/.local/bin"
-
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
+# Created by `pipx` on 2025-09-13 08:43:59
+export PATH="$PATH:$HOME/.local/bin"
