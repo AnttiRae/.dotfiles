@@ -102,6 +102,7 @@ tns() {
   tmux new-session -d -s "$session_name"
 }
 
+source /usr/share/nvm/init-nvm.sh
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
