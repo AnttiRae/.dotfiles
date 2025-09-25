@@ -260,10 +260,19 @@ workspace 5 output DP-3
 workspace 6 output DP-3
 workspace 7 output DP-3
 
-assign [app_id="tidal-hifi"] workspace 5
-assign [class="discord"] workspace 5
+assign [app_id="tidal-hifi"] workspace 1
+assign [class="discord"] workspace 7
 assign [class="steam"] workspace 5
 
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
 client.unfocused "#696969" "#696969" "#696969" "#696969"
+
+
+# autostart stuff
+
+exec_always ./primary-screen.sh
+
+exec tidal-hifi
+exec discord
+exec steam
