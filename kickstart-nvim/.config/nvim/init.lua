@@ -169,6 +169,10 @@ vim.o.confirm = true
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+vim.keymap.set('n', 'q', '<nop>', { noremap = true })
+vim.keymap.set('n', 'Q', 'q', { noremap = true, desc = 'Record macro' })
+vim.keymap.set('n', '<M-q>', 'Q', { noremap = true, desc = 'Replay last register' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
