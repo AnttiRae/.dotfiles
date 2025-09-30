@@ -745,7 +745,6 @@ require('lazy').setup({
 
       require('mason-lspconfig').setup {
         ensure_installed = {
-          'stylua',
           'pyright',
           'lua_ls',
           'ruff',
@@ -850,7 +849,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'black' },
+        python = { 'ruff' },
         javascript = { { 'prettierd', 'prettier' } },
         typescript = { { 'prettierd', 'prettier' } },
         typescriptreact = { { 'prettierd', 'prettier' } },
