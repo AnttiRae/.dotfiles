@@ -77,12 +77,6 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '${HOME}/google-cloud-sdk/path.zsh.inc' ]; then . '${HOME}/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '${HOME}/google-cloud-sdk/completion.zsh.inc' ]; then . '${HOME}/google-cloud-sdk/completion.zsh.inc'; fi
-
 # FUNCTIONS
 
 irebase() {
@@ -104,9 +98,18 @@ tns() {
 
 source /usr/share/nvm/init-nvm.sh
 
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
 # Created by `pipx` on 2025-09-13 08:43:59
 export PATH="$PATH:$HOME/.local/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/arae/Projects/puunkaato/google-cloud-sdk/path.zsh.inc' ]; then . '/home/arae/Projects/puunkaato/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/arae/Projects/puunkaato/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/arae/Projects/puunkaato/google-cloud-sdk/completion.zsh.inc'; fi
