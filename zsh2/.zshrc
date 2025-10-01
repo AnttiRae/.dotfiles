@@ -79,6 +79,12 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # FUNCTIONS
 
+poweroff() {
+  tmux run-shell '~/.tmux/plugins/tmux-resurrect/scripts/save.sh'
+  command -v timew >/dev/null 2>&1 && timew stop
+  command poweroff
+}
+
 irebase() {
   local base="${1:-main}"
   git rebase -i $(git merge-base $base HEAD)
