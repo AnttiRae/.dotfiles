@@ -263,6 +263,7 @@ workspace 7 output DP-3
 assign [class="tidal-hifi"] workspace 2
 assign [class="discord"] workspace 9
 assign [class="steam"] workspace 5
+assign [app_id="Alacritty"] workspace 1
 
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
@@ -276,4 +277,4 @@ exec_always ./primary-screen.sh
 exec tidal-hifi
 exec discord
 exec steam
-exec tmux
+exec alacritty -e sh ~/.local/scripts/ta

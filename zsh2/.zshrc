@@ -60,8 +60,6 @@ alias "C=xclip"
 alias "v=xclip -o"
 alias "c=xclip -selection clipboard"
 
-alias ta='tmux attach-session'
-
 alias k='kubectl'
 
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"

@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ -n "$TMUX" ]; then
+    echo "Already inside a tmux session."
+    exit 0
+fi
+
+if [ -z "$(tmux ls 2>/dev/null)" ]; then
+    tmux
+else
+    tmux attach
+fi
