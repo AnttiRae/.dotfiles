@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+ echo "Error: jq is not installed. Please install jq to parse JSON responses."
+ exit 1
+fi
+
+if [[ -z "$JIRA_API_TOKEN" || -z "$JIRA_USER_EMAIL" || -z "$JIRA_BASE_URL" ]]; then
+  echo "One or more required Jira environment variables (JIRA_API_TOKEN, JIRA_USER, JIRA_URL) are not set"
+  exit 1
+fi
+
+# Define the JQL query
+JQL_QUERY='{
+"jql": "status != Done AND assignee = currentUser() ORDER BY updatedDate",
+"fields": ["key", "summary", "status"],
+"maxResults": 50
+}'
+
+# Fetch issues assigned to the current user
+response=$(curl -s -u "$JIRA_USER_EMAIL:$JIRA_API_TOKEN" \
+ -X POST "$JIRA_BASE_URL/rest/api/3/search/jql" \
+ -H "Content-Type: application/json" \
+ -H "Accept: application/json" \
+ -d "$JQL_QUERY")
+
+# Check if the response contains errors
+if echo "$response" | jq -e '.errorMessages' &> /dev/null; then
+ echo "Error: $(echo "$response" | jq -r '.errorMessages[]')"
+ exit 1
+fi
+
+# Parse and display issues
+echo "$response" | jq -r '.issues[] | "\(.key): \(.fields.summary) [\(.fields.status.name)]"'
+
