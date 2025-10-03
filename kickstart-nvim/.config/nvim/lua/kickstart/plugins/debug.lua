@@ -170,5 +170,33 @@ return {
     local dap_python = require 'dap-python'
     dap_python.setup 'python'
     dap_python.test_runner = 'pytest'
+    local dap = require 'dap'
+
+    dap.configurations.python = dap.configurations.python or {}
+
+    table.insert(dap.configurations.python, {
+      type = 'python',
+      request = 'launch',
+      name = 'Django runserver',
+      program = '${workspaceFolder}/manage.py',
+      args = { 'runserver', '127.0.0.1:8000' },
+      django = true,
+      justMyCode = false,
+      console = 'integratedTerminal',
+      cwd = '${workspaceFolder}',
+    })
+
+    -- Django test debugging
+    table.insert(dap.configurations.python, {
+      type = 'python',
+      request = 'launch',
+      name = 'Django test',
+      program = '${workspaceFolder}/manage.py',
+      args = { 'test' },
+      django = true,
+      justMyCode = false,
+      console = 'integratedTerminal',
+      cwd = '${workspaceFolder}',
+    })
   end,
 }
