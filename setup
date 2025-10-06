@@ -1,35 +1,8 @@
 #!/bin/bash
 
-if [[ " $@ " =~ " HELP " ]]; then
-  echo "Usage: $0 [OPTIONS]"
-  echo
-  echo "This script installs various tools and configurations based on the provided arguments."
-  echo "Pass one or more of the following keywords to control what is installed:"
-  echo
-  echo "  HELP       Display this help text."
-  echo "  ZSH        Install Oh My Zsh, Zsh plugins (autosuggestions, powerlevel10k, syntax highlighting)."
-  echo "  ATUIN      Install Atuin shell history manager."
-  echo "  PYTHON     Install Pyenv and Python pip packages from 'pip-packages' file."
-  echo "  DNF        Install packages listed in 'dnf-packages' file (using dnf)."
-  echo "  DOTS       Update git submodules and create symlinks for dotfiles using 'stow'."
-  echo "  KDE        Import KDE configuration using 'konsave' from 'thinkpad-a.knsv'."
-  echo "  FLATPAKS   Install Flatpak applications listed in 'flatpaks' file."
-  echo
-  echo "Examples:"
-  echo "  $0 ALL              Install everything."
-  echo "  $0 ZSH FLATPAKS     Install Zsh and Flatpaks."
-  echo "  $0 HELP             Display this help text."
-  return 1 2>/dev/null
-  exit 1
-
-fi
-
 if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "DOCKER INSTALL"
-  sudo dnf -y install dnf-plugins-core
-  sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-  sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-  sudo systemctl enable --now docker
+  sudo pacman -Suy docker
   sudo groupadd docker
   sudo usermod -aG docker $USER
   newgrp docker
@@ -70,13 +43,13 @@ if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "STOWING DOT FILES"
   git submodule update --init --recursive
 
-  stow -R fonts zsh p10k alacritty tmux scripts
+  stow -R fonts zsh alacritty tmux scripts
 fi
 
 
 if [[ " $@ " =~ " TMUX " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "TMUX CONFIG"
-  
+
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 fi
@@ -105,6 +78,14 @@ if [[ " $@ " =~ " KDE " ]] || [[ " $@ " =~ " ALL " ]]; then
   # Run the commands if "KDE" is found in the arguments
   konsave -i ./thinkpad-a.knsv
   konsave -a thinkpad-a
+fi
+
+
+if [[ " $@ " =~ " SWAY " ]] || [[ " $@ " =~ " ALL " ]]; then
+  echo "SWAY SETUP"
+  yay -Syu sway xclip clipman slurp azote grim swaylock swaybg wmenu waybar swaync fuzzel tmux nvim
+
+  stow -S sway waybar scripts zsh2 tmux kickstart fuzzel
 fi
 
 echo "DONE"
