@@ -278,3 +278,4 @@ exec tidal-hifi
 exec discord
 exec steam
 exec alacritty -e sh ~/.local/scripts/ta
+exec_always ~/.azotebg
