@@ -110,7 +110,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym f8 exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym f8 exec sh -c 'pactl set-source-mute @DEFAULT_SOURCE@ toggle; pactl get-source-mute @DEFAULT_SOURCE@ | grep -q yes && notify-send mic muted || notify-send mic unmuted'
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -279,3 +279,4 @@ exec discord
 exec steam
 exec alacritty -e sh ~/.local/scripts/ta
 exec_always ~/.azotebg
+exec_always mako -c ~/.config/mako/config
