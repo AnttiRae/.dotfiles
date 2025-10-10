@@ -1,8 +1,13 @@
 #!/bin/bash
 
+if [[ " $@ " =~ " COMMON " ]] || [[ " $@ " =~ " ALL " ]]; then
+  echo "COMMON PACKAGES INSTALL"
+  yay -Suy - < ./packages/common
+fi
+
 if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "DOCKER INSTALL"
-  sudo pacman -Suy docker
+  yay -Suy docker
   sudo groupadd docker
   sudo usermod -aG docker $USER
   newgrp docker
@@ -15,37 +20,16 @@ if [[ " $@ " =~ " MINIKUBE " ]] || [[ " $@ " =~ " ALL " ]]; then
   rm minikube-latest.x86_64.rpm
 fi
 
-if [[ " $@ " =~ " ZSH " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "OHMYZSH INSTALL"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-  echo "ZSH PLUGINS"
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-  chsh -s $(which zsh)
-fi
-
 if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "PYENV INSTALL"
+  echo "PYTHON+PYENV INSTALL"
+  yay -Suy python python-pip
   curl https://pyenv.run | bash
 fi
 
-if [[ " $@ " =~ " PACMAN " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "PACMAN PACKAGES"
-  sudo pacman -S - < pacman-packages
+
+if [[ " $@ " =~ " NODE " ]] || [[ " $@ " =~ " ALL " ]]; then
+  yay -Suy nodejs npm
 fi
-
-if [[ " $@ " =~ " DOTS " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "STOWING DOT FILES"
-  git submodule update --init --recursive
-
-  stow -R fonts zsh alacritty tmux scripts
-fi
-
 
 if [[ " $@ " =~ " TMUX " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "TMUX CONFIG"
@@ -67,25 +51,25 @@ if [[ " $@ " =~ " YAY " ]] || [[ " $@ " =~ " ALL " ]]; then
   sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 fi
 
-if [[ " $@ " =~ " YAY_PACKAGES " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "YAY PACKAGES"
-  # deliberately split on all whitespace, but don't do globbing
-  yay -S - < yay-packages
-fi
-
-if [[ " $@ " =~ " KDE " ]] || [[ " $@ " =~ " ALL " ]]; then
+if [[ " $@ " =~ " KDE " ]]; then
   echo "KONSAVE IMPORT"
-  # Run the commands if "KDE" is found in the arguments
+  yay -Suy konsave
   konsave -i ./thinkpad-a.knsv
   konsave -a thinkpad-a
 fi
 
-
-if [[ " $@ " =~ " SWAY " ]] || [[ " $@ " =~ " ALL " ]]; then
+if [[ " $@ " =~ " SWAY " ]]; then
   echo "SWAY SETUP"
-  yay -Syu sway xclip clipman slurp azote grim swaylock swaybg wmenu waybar swaync fuzzel tmux nvim
+  yay -Syu - < ./packages/sway
 
-  stow -S sway waybar scripts zsh2 tmux kickstart fuzzel
+  stow -S sway waybar scripts zsh2 tmux kickstart-nvim fuzzel mako
+fi
+
+if [[ " $@ " =~ " DEVOPS " ]] || [[ " $@ " =~ " ALL " ]]; then
+  echo "DEVOPS SETUP"
+  yay -Syu - < ./packages/devops
+
+  stow -S k9s
 fi
 
 echo "DONE"
