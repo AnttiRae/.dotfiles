@@ -26,6 +26,10 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
+bindkey '^[[Z' reverse-menu-complete
+
+zstyle ':completion:*' menu select
+
 # A glance at the new for-syntax – load all of the above
 # plugins with a single command. For more information see:
 # https://zdharma-continuum.github.io/zinit/wiki/For-Syntax/
@@ -33,6 +37,7 @@ zinit for \
   zsh-users/zsh-autosuggestions \
   zdharma-continuum/fast-syntax-highlighting \
   https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh \
+  https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \
 
 eval "$(starship init zsh)"
 
