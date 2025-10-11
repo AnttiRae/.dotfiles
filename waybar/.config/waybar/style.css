@@ -47,7 +47,7 @@ window#waybar {
     background-color: @second-background;
 }
 #workspaces button.urgent {
-    background-color: @urgent;
+    background-color: @color3;
 }
 
 
@@ -83,15 +83,8 @@ window#waybar {
 }
 
 
-/* whats this?? */
-button {
-  border: none;
-}
 
-
-/* left island */
-
-/* menu pannel */
+/* menu panel */
 #custom-arch,
 #custom-powerprofile,
 #custom-themeswitcher{
@@ -108,14 +101,6 @@ button {
 }
 #custom-themeswitcher:hover {
     color: @color1;
-}
-
-/* no idea what this does */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
 }
 
 /* media player */

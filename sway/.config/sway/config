@@ -278,5 +278,5 @@ exec tidal-hifi
 exec discord
 exec steam
 exec alacritty -e sh ~/.local/scripts/ta
-exec_always ~/.azotebg
-exec_always mako -c ~/.config/mako/config
+exec ~/.azotebg
+exec mako -c ~/.config/mako/config

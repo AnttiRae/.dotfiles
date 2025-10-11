@@ -62,6 +62,7 @@ alias ..="cd .."
 alias -- -="cd -"
 
 alias vim='nvim'
+alias vi='nvim'
 
 alias rs='source ~/.zshrc'
 
