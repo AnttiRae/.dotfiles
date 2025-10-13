@@ -772,6 +772,7 @@ require('lazy').setup({
         'delve', -- go debugger
         'ruff',
         'markdownlint',
+        'prettier',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -783,6 +784,7 @@ require('lazy').setup({
           'gopls',
           'terraformls',
           'helm_ls',
+          'css-lsp',
         }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
         handlers = {
