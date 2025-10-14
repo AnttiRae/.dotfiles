@@ -784,7 +784,7 @@ require('lazy').setup({
           'gopls',
           'terraformls',
           'helm_ls',
-          'css-lsp',
+          'cssls',
         }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
         handlers = {
