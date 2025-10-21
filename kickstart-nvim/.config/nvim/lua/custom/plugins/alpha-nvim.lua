@@ -14,7 +14,7 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
     }
-    local handle = io.popen 'fortune -a | cowsay -r | lolcat'
+    local handle = io.popen 'fortune -a | cowsay -r'
     local fortune = handle:read '*a'
     handle:close()
     dashboard.section.footer.val = fortune
