@@ -1,0 +1,4 @@
+#!/bin/bash
+
+touch ~/Documents/project-notes/dailies/$(date +%Y-%m-%d).md
+
