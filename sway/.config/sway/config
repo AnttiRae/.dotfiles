@@ -196,7 +196,7 @@ bindsym $mod+g focus mode_toggle
 bindsym $mod+a focus parent
 
 # Clipboard related stuff
-bindsym $mod+Shift+Control+mod1+g exec cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
+bindsym $mod+Shift+Control+mod1+g exec cliphist list | fuzzel --dmenu --counter | cliphist decode | wl-copy
 
 #
 # Scratchpad:
@@ -209,7 +209,7 @@ bindsym $mod+Shift+tab move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+tab scrachpad show
+bindsym $mod+tab scratchpad show
 
 #
 # Resizing containers:
