@@ -196,7 +196,9 @@ bindsym $mod+g focus mode_toggle
 bindsym $mod+a focus parent
 
 # Clipboard related stuff
-bindsym $mod+Shift+Control+mod1+g exec cliphist list | fuzzel --dmenu --counter | cliphist decode | wl-copy
+bindsym $mod+Shift+Control+mod1+g exec alacritty --class clipse -e clipse
+
+for_window [app_id="clipse"] floating enable, move position center, resize set 40ppt 80ppt
 
 #
 # Scratchpad:
@@ -275,6 +277,7 @@ client.focused_inactive "#696969" "#696969" "#696969" "#696969"
 client.unfocused "#696969" "#696969" "#696969" "#696969"
 
 
+
 # autostart stuff
 
 exec_always ./primary-screen.sh
@@ -288,4 +291,4 @@ exec ~/.azotebg
 # notifications
 exec mako -c ~/.config/mako/config
 # clipboard
-exec wl-paste --watch cliphist store
+exec clipse -listen                                                                        # run the background listener on startup
