@@ -692,6 +692,23 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
+        prettier = {
+          bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+          filetypes = {
+            'css',
+            'graphql',
+            'html',
+            'javascript',
+            'javascriptreact',
+            'json',
+            'less',
+            'markdown',
+            'scss',
+            'typescript',
+            'typescriptreact',
+            'yaml',
+          },
+        },
         gopls = {},
         pyright = {},
         helm_ls = {
@@ -782,6 +799,7 @@ require('lazy').setup({
           'lua_ls',
           'ruff',
           'gopls',
+          'ts_ls',
           'terraformls',
           'helm_ls',
           'cssls',
