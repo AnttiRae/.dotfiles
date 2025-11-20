@@ -251,7 +251,6 @@ rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -259,7 +258,18 @@ require('lazy').setup({
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
+  {
+    'Darazaki/indent-o-matic', -- Detect tabstop and shiftwidth automatically
+    opts = {
+      max_lines = 2048,
 
+      -- Space indentations that should be detected
+      standard_widths = { 2, 4, 8 },
+
+      -- Skip multi-line comments and strings (more accurate detection but less performant)
+      skip_multiline = true,
+    },
+  },
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
   --    {
