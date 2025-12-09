@@ -10,14 +10,16 @@
     "spacing": 0,
 
     "modules-left": [
-        "group/workspaces",
-        "mpris"
+        "clock#time",
+        "custom/split",
+        "clock#date",
+        "mpris",
     ],
     "modules-center": [
-        "group/windows"
+        "group/workspaces",
     ],
     "modules-right": [
-        "group/cpuram",
+        "group/monitor",
         "group/system",
         "group/brightvol",
     ],
@@ -95,7 +97,7 @@
         "dynamic-len": 40,
         "status-icons": {
             "playing": "▶",
-            "paused": "⏸",
+            "paused": "",
             "stopped": ""
         },
         "dynamic-order": ["artist"]
@@ -117,26 +119,41 @@
         "all-outputs": true
     },
 
-
-
-    "group/cpuram": {
+    "group/monitor": {
         "orientation": "horizontal",
         "modules": [
             "custom/openbracket",
             "cpu",
             "custom/split",
             "memory",
+            "custom/split",
+            "disk",
+            "custom/split",
+            "network#bandwidth",
             "custom/closebracket"
         ]
     },
+    "network#bandwidth": {
+        "interface": "enp13s0",
+        "format": "{bandwidthDownBits} | {bandwidthUpBits}",
+        "max-length": 50,
+        "interval": 2
+    },
+    "disk": {
+        "interval": 30,
+        "format": " 󰗈 {percentage_used}% ",
+        "path": "/"
+    },
     "cpu": {
-        "format": "CPU:{usage}% ~ {avg_frequency}GHz",
+        "format": " {usage}%",
+        "tooltip-format": "{avg_frequency}GHz",
         "tooltip": true,
         "interval": 2,
         "on-click": "alacritty -e btop",
     },
     "memory":{
-        "format": "RAM:{}% ~ {used}/{total}GiB",
+        "format": " {}%",
+        "tooltip-format": "{used}/{total}GiB",
         "tooltip": true,
         "interval": 2,
         "on-click": "alacritty -e btop",
@@ -148,7 +165,7 @@
             "custom/openbracket",
             "wireplumber",
             "custom/split",
-	    "pulseaudio#input",
+            "pulseaudio#input",
             "custom/closebracket"
         ]
     },
@@ -168,12 +185,12 @@
             "default": [" :", " :", " :"]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol"
+        "on-click-right": "pavucontrol -t 3"
     },
     "backlight": {
         "format": "{icon}:{percent}%",
         "format-icons": ["", "", "🌙"],
-        "on-click": "~/.config/waybar/scripts/brightness_slider.sh"  
+        "on-click": "~/.config/waybar/scripts/brightness_slider.sh"
     },
 
     "pulseaudio#input": {
@@ -184,7 +201,7 @@
       "smooth-scrolling-threshold": 1,
       "max-volume": 100,
       "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-      "on-click-middle": "pavucontrol",
+      "on-click-right": "pavucontrol -t 4",
       "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
       "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
     },
@@ -193,14 +210,11 @@
         "orientation": "horizontal",
         "modules": [
             "custom/openbracket",
-            "clock#time",
-            "custom/split",
-            "clock#date",
+            "custom/mako",
             "custom/split",
             "network",
             "custom/bluetooth",
             "battery",
-            "custom/mako",
             "custom/split",
             "tray",
             "custom/closebracket"
@@ -213,7 +227,7 @@
     },
     "clock#date": {
         "format": "{:%e. %b %Y}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>",
         "on-click": "thunderbird -calendar",
         "calendar": {
             "mode": "month",
@@ -295,9 +309,4 @@
         "icon-size": 18,
         "spacing": 12
     },
-    "custom/notifications": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "~/.config/waybar/scripts/notification_center.sh"
-    }
 }]
