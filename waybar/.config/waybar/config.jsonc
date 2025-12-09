@@ -200,7 +200,7 @@
             "network",
             "custom/bluetooth",
             "battery",
-            "custom/swaync",
+            "custom/mako",
             "custom/split",
             "tray",
             "custom/closebracket"
@@ -209,12 +209,32 @@
     "clock#time": {
         "interval": 1,
         "format": "{:%H:%M:%S}",
-        "tooltip": false
+        "tooltip": false,
     },
     "clock#date": {
-        "format": "  {:%e %b %Y}", // Icon: calendar-alt
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "onclick" : "kalender"
+        "format": "{:%e. %b %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click": "thunderbird -calendar",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "on-scroll": 1,
+            "format": {
+              "months": "<span color='#ffead3'><b>{}</b></span>",
+              "days": "<span color='#ecc6d9'><b>{}</b></span>",
+              "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+              "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+              "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+              }
+            },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
     "battery": {
         "states": {
@@ -226,7 +246,6 @@
         "format-charging": " {capacity}%",
         "format-plugged": "  {capacity}%",
         "format-icons": ["", "", "", "", ""],
-        "on-click": "wlogout"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -235,14 +254,15 @@
             "deactivated": ""
         }
     },
-    "custom/swaync": {
-      "format": "",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client --toggle-panel",
-      "interval": 0
+    "custom/mako": {
+      "format": "{}",
+      "exec": "makoctl mode | grep -q do-not-disturb && echo ' ' || echo ' '",
+      "on-click": "makoctl mode -t do-not-disturb",
+      "interval": 1,
+      "return-type": "text"
     },
     "network": {
-        "interface": "wlan0",
+        "interface": "enp13s0",
         "format-wifi": "{icon}",
         "format-ethernet": "󰈀 LAN",
         "format-disconnected": "󰖪",

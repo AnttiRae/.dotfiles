@@ -2,3 +2,6 @@ default-timeout=2500
 background-color=#2C2A24
 border-color=#FF7F50
 layer=overlay
+
+[mode=do-not-disturb]
+invisible=1

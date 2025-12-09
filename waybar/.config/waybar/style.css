@@ -11,115 +11,109 @@
 @define-color color4 #FF7F50;
 @define-color urgent #B05A5A;
 
-
 /* font declared */
 * {
-    font-family: "Jetbrains Mono Nerd Font";
-    font-size: 14px;
+  font-family: "Jetbrains Mono Nerd Font";
+  font-size: 14px;
 }
 #custom-openbracket,
-#custom-closebracket{
-    margin: 0 5px ;
+#custom-closebracket {
+  margin: 0 5px;
 }
 
 /* idk what all this does */
 window#waybar {
-    background-color: transparent;
-    border-bottom: 0;
-    color: @text;
-    transition: background-color 0.5s;
+  background-color: transparent;
+  border-bottom: 0;
+  color: @text;
+  transition: background-color 0.5s;
 }
 
 /* workspace panel */
 #workspaces button {
-    border-top: 2px solid transparent;
-    padding: 0 3px;
-    background-color: transparent;
-    color: @text;
-    border-radius: 0;
-
+  border-top: 2px solid transparent;
+  padding: 0 3px;
+  background-color: transparent;
+  color: @text;
+  border-radius: 0;
 }
 #workspaces button:hover {
-    background-color: @second-background;
+  background-color: @second-background;
 }
 #workspaces button.active {
-    color: @focused2;
-    background-color: @second-background;
+  color: @focused2;
+  background-color: @second-background;
 }
 #workspaces button.urgent {
-    background-color: @color3;
+  background-color: @color3;
 }
-
 
 #workspaces button.focused {
-    border-color: @color4;
-    color: white;
-    background-color: @color4;
+  border-color: @color4;
+  color: white;
+  background-color: @color4;
 }
 
 #workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+  border-color: #c9545d;
+  color: #c9545d;
 }
 
 /* configuring the modules */
 .modules-left {
-    padding: 0 0 0 7px;
-    background-color: @background;
-    border: 2px solid @focused;
-    border-radius: 5px;
+  padding: 0 0 0 7px;
+  background-color: @background;
+  border: 2px solid @focused;
+  border-radius: 5px;
 }
 .modules-center {
-    padding: 0 10px 0 10px;
-    background-color: @background;
-    border: 2px solid @focused;
-    border-radius: 5px;
+  padding: 0 10px 0 10px;
+  background-color: @background;
+  border: 2px solid @focused;
+  border-radius: 5px;
 }
 .modules-right {
-    padding: 0 10px 0 10px;
-    background-color: @background;
-    border: 2px solid @focused;
-    border-radius: 5px;
+  padding: 0 10px 0 10px;
+  background-color: @background;
+  border: 2px solid @focused;
+  border-radius: 5px;
 }
-
-
 
 /* menu panel */
 #custom-arch,
 #custom-powerprofile,
-#custom-themeswitcher{
-    padding-right: 10px;
-    padding-left: 5px;
-    font-size: 15px;
-    border-radius: 8px;
+#custom-themeswitcher {
+  padding-right: 10px;
+  padding-left: 5px;
+  font-size: 15px;
+  border-radius: 8px;
 }
 #custom-arch:hover {
-    color: @color1;
+  color: @color1;
 }
-#custom-powerprofile:hover{
-    color: @color1
+#custom-powerprofile:hover {
+  color: @color1;
 }
 #custom-themeswitcher:hover {
-    color: @color1;
+  color: @color1;
 }
 
 /* media player */
 #mpris {
-    margin: 0 0 0 5px;
-    padding: 0 9px ;
-    background-color: @background;
-    color: @text;
+  margin: 0 0 0 5px;
+  padding: 0 9px;
+  background-color: @background;
+  color: @text;
 }
 #mpris.playing {
-    background-color: @color3;
-    border-radius: 2px;
-    color: @background;
+  background-color: @color3;
+  border-radius: 2px;
+  color: @background;
 }
 
-
 /* center module  */
-#window{
-    padding: 0 5px;
+#window {
+  padding: 0 5px;
 }
 
 /* Right Island */
@@ -132,7 +126,7 @@ window#waybar {
 #custom-clipboard,
 #custom-bluetooth,
 #network {
-  padding: 0 10px ;
+  padding: 0 10px;
 }
 #clock:hover,
 #battery:hover,
@@ -143,31 +137,31 @@ window#waybar {
 #idle_inhibitor:hover,
 #custom-swaync:hover,
 #backlight:hover,
-#wireplumber:hover{
-    color: @color1;
+#wireplumber:hover {
+  color: @color1;
 }
-#idle_inhibitor{
+#idle_inhibitor {
   padding: 0 10px 0 0;
 }
-#custom-powerprofile{
+#custom-powerprofile {
   padding: 0 8px 0 4px;
 }
 /* Remaining Modules */
 #backlight,
-#wireplumber{
-    padding: 0 5px;
+#wireplumber {
+  padding: 0 5px;
 }
 #wireplumber.muted {
   background-color: @color2;
 }
 #custom-swaync {
-    padding: 0 10px 0 5px;
-    font-size: 16px;       /* same scale as other icons */
-    color: @text;
+  padding: 0 10px 0 5px;
+  font-size: 16px; /* same scale as other icons */
+  color: @text;
 }
 #battery.charging,
 #battery.plugged {
-  background-color: @focused2 ;
+  background-color: @focused2;
   color: @background;
 }
 #battery.critical:not(.charging) {
