@@ -292,3 +292,5 @@ exec ~/.azotebg
 exec mako -c ~/.config/mako/config
 # clipboard
 exec clipse -listen                                                                        # run the background listener on startup
+# automount usbs
+exec udiskie --smart-tray
