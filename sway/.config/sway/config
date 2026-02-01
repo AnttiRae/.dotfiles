@@ -257,7 +257,6 @@ include @sysconfdir@/sway/config.d/*
 gaps inner 5
 smart_gaps on
 
-
 #
 # Workspaces
 #
@@ -269,7 +268,7 @@ workspace 5 output DP-3
 workspace 6 output DP-3
 workspace 7 output DP-3
 
-assign [class="tidal-hifi"] workspace 2
+assign [class="tidal-hifi"] workspace 5
 assign [class="discord"] workspace 9
 assign [class="steam"] workspace 5
 assign [app_id="Alacritty"] workspace 1
@@ -277,7 +276,6 @@ assign [app_id="Alacritty"] workspace 1
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
 client.unfocused "#696969" "#696969" "#696969" "#696969"
-
 
 
 # autostart stuff
@@ -288,11 +286,13 @@ exec tidal-hifi
 exec discord
 exec steam
 exec alacritty -e sh ~/.local/scripts/ta
+
 # background wallpaper
 exec ~/.azotebg
 # notifications
 exec mako -c ~/.config/mako/config
 # clipboard
-exec clipse -listen                                                                        # run the background listener on startup
+# run the background listener on startup
+exec clipse -listen
 # automount usbs
 exec udiskie --smart-tray
