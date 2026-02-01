@@ -85,31 +85,6 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# FUNCTIONS
-
-poweroff() {
-  tmux run-shell '~/.tmux/plugins/tmux-resurrect/scripts/save.sh'
-  command -v timew >/dev/null 2>&1 && timew stop
-  command poweroff
-}
-
-irebase() {
-  local base="${1:-main}"
-  git rebase -i $(git merge-base $base HEAD)
-}
-
-tns() {
-  local session_name=$1
-  if [[ -z "$session_name" ]]; then
-    read -r "session_name?Enter session name: "
-    if [[ -z "$session_name" ]]; then
-      echo "Error: session name required." >&2
-      return 1
-    fi
-  fi
-  tmux new-session -d -s "$session_name"
-}
-
 source /usr/share/nvm/init-nvm.sh
 
 # krew
