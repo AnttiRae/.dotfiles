@@ -1,0 +1,11 @@
+#!/bin/bash
+
+session_name=$1
+if [[ -z "$session_name" ]]; then
+  read -p "Enter session name: " session_name
+  if [[ -z "$session_name" ]]; then
+    echo "Error: session name required." >&2
+    exit 1
+  fi
+fi
+tmux new-session -d -s "$session_name"

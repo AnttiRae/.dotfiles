@@ -1,0 +1,5 @@
+#!/bin/bash
+
+tmux run-shell '~/.tmux/plugins/tmux-resurrect/scripts/save.sh'
+command -v timew >/dev/null 2>&1 && timew stop
+command poweroff
