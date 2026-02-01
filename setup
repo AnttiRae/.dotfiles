@@ -2,12 +2,12 @@
 
 if [[ " $@ " =~ " COMMON " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "COMMON PACKAGES INSTALL"
-  yay -Suy - < ./packages/common
+  paru -Suy --noconfirm - < ./packages/common
 fi
 
 if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "DOCKER INSTALL"
-  yay -Suy docker
+  paru -Suy --noconfirm docker
   sudo groupadd docker
   sudo usermod -aG docker $USER
   newgrp docker
@@ -38,13 +38,13 @@ fi
 
 if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "PYTHON+PYENV INSTALL"
-  yay -Suy python python-pip
+  paru -Suy --noconfirm python python-pip
   curl https://pyenv.run | bash
 fi
 
 
 if [[ " $@ " =~ " NODE " ]] || [[ " $@ " =~ " ALL " ]]; then
-  yay -Suy nodejs npm
+  paru -Suy --noconfirm nodejs npm
 fi
 
 if [[ " $@ " =~ " TMUX " ]] || [[ " $@ " =~ " ALL " ]]; then
@@ -62,28 +62,23 @@ if [[ " $@ " =~ " JETBRAINS " ]] || [[ " $@ " =~ " ALL " ]]; then
   stow -R ideavim
 fi
 
-if [[ " $@ " =~ " YAY " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "YAY INSTALL"
-  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-fi
-
 if [[ " $@ " =~ " KDE " ]]; then
   echo "KONSAVE IMPORT"
-  yay -Suy konsave
+  paru -Suy --noconfirm konsave
   konsave -i ./thinkpad-a.knsv
   konsave -a thinkpad-a
 fi
 
 if [[ " $@ " =~ " SWAY " ]]; then
   echo "SWAY SETUP"
-  yay -Syu - < ./packages/sway
+  paru -Syu --noconfirm - < ./packages/sway
 
-  stow -S sway waybar scripts zsh2 tmux kickstart-nvim fuzzel mako
+  stow -S sway waybar scripts tmux kickstart-nvim fuzzel mako
 fi
 
 if [[ " $@ " =~ " DEVOPS " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "DEVOPS SETUP"
-  yay -Syu - < ./packages/devops
+  paru -Syu - < ./packages/devops
 
   stow -S k9s
 fi
