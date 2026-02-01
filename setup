@@ -13,13 +13,6 @@ if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
   newgrp docker
 fi
 
-if [[ " $@ " =~ " MINIKUBE " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "MINIKUBE INSTALL"
-  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
-  sudo rpm -Uvh minikube-latest.x86_64.rpm
-  rm minikube-latest.x86_64.rpm
-fi
-
 if [[ " $@ " =~ " K8S " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "K8S INSTALL"
   sudo pacman -S kubectl helm
