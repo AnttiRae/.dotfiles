@@ -90,6 +90,7 @@ bindsym $mod+x kill
 # Start your launcher
 bindsym $mod+r exec $menu
 
+bindsym $mod+e exec thunar
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
@@ -183,7 +184,7 @@ bindsym $mod+v splitv
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
