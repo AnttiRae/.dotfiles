@@ -10,10 +10,10 @@ fish_vi_key_bindings
 # COMPLETIONS
 
 if type -q kubectl
-  kubectl completion zsh | source
+  kubectl completion fish | source
 end
 if type -q helm
-  helm completion zsh | source
+  helm completion fish | source
 end
 
 # ALIASES
@@ -26,7 +26,7 @@ alias la='lsd -la'
 alias vim='nvim'
 alias vi='nvim'
 
-# alias rs='source ~/.config/fish/config.fish'
+alias rs='source ~/.config/fish/config.fish'
 
 alias "C=xclip"
 alias "v=xclip -o"
