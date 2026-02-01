@@ -5,6 +5,7 @@ bitwarden
 discord
 git-delta
 tmux
+xclip
 lsd
 thunderbird
 firefox
@@ -14,7 +15,13 @@ zsh
 alacritty
 atuin
 go
+node
+python
 tidal-hifi-bin
 parabolic
 btop
+glances
 ristretto
+zen-browser-bin
+opencode
+flatpak
