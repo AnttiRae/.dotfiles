@@ -1,11 +1,9 @@
-# source /usr/share/cachyos-fish-config/cachyos-config.fish
 fish_vi_key_bindings
 
 # overwrite greeting
-# potentially disabling fastfetch
-#function fish_greeting
+function fish_greeting
 #    # smth smth
-#end
+end
 
 # FUNCTIONS
 
@@ -23,6 +21,8 @@ if type -q helm
 end
 
 # ALIASES
+
+abbr -a -- - 'cd -'
 
 alias ll='lsd -lh'
 alias l='lsd -l'
@@ -53,6 +53,11 @@ export VISUAL=nvim
 
 # krew
 export PATH="$KREW_ROOT:-$HOME/.krew/bin:$PATH"
+
+
+if type -q zoxide
+  zoxide init fish | source
+end
 
 # pyenv
 if type -q pyenv
