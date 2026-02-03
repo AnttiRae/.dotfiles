@@ -51,6 +51,13 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export EDITOR=nvim
 export VISUAL=nvim
 
+# FUNCTIONS
+
+
+poweroff() {
+  ~/.local/scripts/poweroff
+}
+
 # ALIASES
 
 alias ll='lsd -lh'

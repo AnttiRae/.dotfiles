@@ -1,4 +1,4 @@
-source /usr/share/cachyos-fish-config/cachyos-config.fish
+# source /usr/share/cachyos-fish-config/cachyos-config.fish
 fish_vi_key_bindings
 
 # overwrite greeting
@@ -6,6 +6,12 @@ fish_vi_key_bindings
 #function fish_greeting
 #    # smth smth
 #end
+
+# FUNCTIONS
+
+function poweroff
+  ~/.local/scripts/poweroff
+end
 
 # COMPLETIONS
 
@@ -50,9 +56,7 @@ export PATH="$KREW_ROOT:-$HOME/.krew/bin:$PATH"
 
 # pyenv
 if type -q pyenv
-  export PYENV_ROOT="$HOME/.pyenv"
-  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init - zsh)"
+  pyenv init - fish | source
 end
 
 ## ATUIN
