@@ -64,6 +64,12 @@ if type -q pyenv
   pyenv init - fish | source
 end
 
+# direnv
+
+if type -q direnv
+  direnv hook fish | source
+end
+
 ## ATUIN
 set -gx ATUIN_NOBIND "true"
 atuin init fish | source
