@@ -50,6 +50,16 @@ export PATH="$PATH:$HOME/.local/scripts"
 export EDITOR=nvim
 export VISUAL=nvim
 
+# fzf theme
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:#5d6466,fg+:#d0d0d0,bg:#1e2527,bg+:#262626
+  --color=hl:#dadada,hl+:#5fd7ff,info:#606672,marker:#87ff00
+  --color=prompt:#d7005f,spinner:#af5fff,pointer:#373d49,header:#87afaf
+  --color=gutter:#1e2527,border:#48573d,preview-border:#5c5a5a,label:#aeaeae
+  --color=query:#d9d9d9
+  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
+  --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
 
 # krew
 export PATH="$KREW_ROOT:-$HOME/.krew/bin:$PATH"
