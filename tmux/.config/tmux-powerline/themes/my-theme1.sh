@@ -125,7 +125,6 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
     #"macos_notification_count 29 255"
     "hostname 16 45"
     #"mode_indicator 0 255"
-    "timew"
     #"mailcount 9 255"
     # "now_playing 234 37"
     # "cpu 240 136"
