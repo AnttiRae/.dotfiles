@@ -77,7 +77,7 @@ fi
 
 if [[ " $@ " =~ " DEVOPS " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "DEVOPS SETUP"
-  paru -Syu - < ./packages/devops
+  paru -Syu --noconfirm - < ./packages/devops
 
   stow -S k9s
 fi
