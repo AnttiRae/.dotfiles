@@ -720,6 +720,7 @@ require('lazy').setup({
           },
         },
         gopls = {},
+        terraformls = {},
         pyright = {},
         helm_ls = {
           settings = {
