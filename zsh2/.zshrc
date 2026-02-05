@@ -104,3 +104,10 @@ eval "$(pyenv init - zsh)"
 # Created by `pipx` on 2025-09-13 08:43:59
 export PATH="$PATH:$HOME/.local/bin"
 
+# pnpm
+export PNPM_HOME="/home/arae/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
