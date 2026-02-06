@@ -52,7 +52,7 @@ export VISUAL=nvim
 
 # fzf theme
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+set -Ux FZF_DEFAULT_OPTS '
   --color=fg:#5d6466,fg+:#d0d0d0,bg:#1e2527,bg+:#262626
   --color=hl:#dadada,hl+:#5fd7ff,info:#606672,marker:#87ff00
   --color=prompt:#d7005f,spinner:#af5fff,pointer:#373d49,header:#87afaf
@@ -62,7 +62,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
 
 # krew
-export PATH="$KREW_ROOT:-$HOME/.krew/bin:$PATH"
+set -gx PATH $PATH $HOME/.krew/bin
 
 
 if type -q zoxide
