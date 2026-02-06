@@ -53,13 +53,13 @@ export VISUAL=nvim
 # fzf theme
 
 set -Ux FZF_DEFAULT_OPTS '
-  --color=fg:#5d6466,fg+:#d0d0d0,bg:#1e2527,bg+:#262626
-  --color=hl:#dadada,hl+:#5fd7ff,info:#606672,marker:#87ff00
-  --color=prompt:#d7005f,spinner:#af5fff,pointer:#373d49,header:#87afaf
-  --color=gutter:#1e2527,border:#48573d,preview-border:#5c5a5a,label:#aeaeae
-  --color=query:#d9d9d9
-  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
-  --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
+  --color=fg:#6e858c,fg+:#ffeded,bg:#181d1e,bg+:#262626
+  --color=hl:#dadada,hl+:#5596ab,info:#606672,marker:#91d049
+  --color=prompt:#809766,spinner:#af5fff,pointer:#a2b4d5,header:#87afaf
+  --color=gutter:#181d1e,border:#48573d,separator:#48573d,preview-border:#5c5a5a
+  --color=label:#aeaeae,query:#d9d9d9
+  --preview-window="border-rounded" --prompt="> " --marker=">" --pointer="◆"
+  --separator="─" --scrollbar="│"'
 
 # krew
 set -gx PATH $PATH $HOME/.krew/bin
