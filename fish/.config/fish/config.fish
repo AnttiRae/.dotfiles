@@ -1,54 +1,16 @@
 fish_vi_key_bindings
 
-# overwrite greeting
 function fish_greeting
-#    # smth smth
 end
 
-# FUNCTIONS
 
-function poweroff
-  ~/.local/scripts/poweroff
-end
+# PATH
 
-# COMPLETIONS
+fish_add_path -p "$HOME/go/bin"
+fish_add_path -p "$HOME/.local/scripts"
 
-if type -q kubectl
-  kubectl completion fish | source
-end
-if type -q helm
-  helm completion fish | source
-end
-
-# ALIASES
-
-abbr -a -- - 'cd -'
-
-alias ll='lsd -lh'
-alias l='lsd -l'
-alias ls='lsd'
-alias la='lsd -la'
-
-alias vim='nvim'
-alias vi='nvim'
-
-alias rs='source ~/.config/fish/config.fish'
-
-alias "C=xclip"
-alias "v=xclip -o"
-alias "c=xclip -selection clipboard"
-
-alias k='kubectl'
-
-alias gst='git status'
-
-# EXPORTS
-
-export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$HOME/.local/scripts"
-
-export EDITOR=nvim
-export VISUAL=nvim
+set -x EDITOR nvim
+set -x VISUAL nvim
 
 # fzf theme
 
@@ -61,29 +23,50 @@ set -Ux FZF_DEFAULT_OPTS '
   --preview-window="border-rounded" --prompt="> " --marker=">" --pointer="◆"
   --separator="─" --scrollbar="│"'
 
-# krew
-set -gx PATH $PATH $HOME/.krew/bin
+status is-interactive; and begin
+  # ALIASES
 
+  abbr -a -- - 'cd -'
 
-if type -q zoxide
-  zoxide init fish | source
+  alias ll='lsd -lh'
+  alias l='lsd -l'
+  alias ls='lsd'
+  alias la='lsd -la'
+
+  alias vim='nvim'
+  alias vi='nvim'
+
+  alias rs='source ~/.config/fish/config.fish'
+
+  alias "C=xclip"
+  alias "v=xclip -o"
+  alias "c=xclip -selection clipboard"
+
+  alias k='kubectl'
+
+  alias gst='git status'
+  # krew
+  set -gx PATH $PATH $HOME/.krew/bin
+
+  if type -q zoxide
+    zoxide init fish | source
+  end
+
+  # pyenv
+  if type -q pyenv
+    pyenv init - fish | source
+  end
+
+  # direnv
+  if type -q direnv
+    direnv hook fish | source
+  end
+
+  ## ATUIN
+  set -gx ATUIN_NOBIND "true"
+  atuin init fish | source
+
+  # bind to ctrl-r in normal and insert mode, add any other bindings you want here too
+  bind \cr _atuin_search
+  bind -M insert \cr _atuin_search
 end
-
-# pyenv
-if type -q pyenv
-  pyenv init - fish | source
-end
-
-# direnv
-
-if type -q direnv
-  direnv hook fish | source
-end
-
-## ATUIN
-set -gx ATUIN_NOBIND "true"
-atuin init fish | source
-
-# bind to ctrl-r in normal and insert mode, add any other bindings you want here too
-bind \cr _atuin_search
-bind -M insert \cr _atuin_search
