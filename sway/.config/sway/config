@@ -269,10 +269,11 @@ workspace 5 output DP-3
 workspace 6 output DP-3
 workspace 7 output DP-3
 
-assign [class="tidal-hifi"] workspace 5
+assign [app_id="tidal-hifi"] workspace 5
 assign [class="discord"] workspace 9
 assign [class="steam"] workspace 5
 assign [app_id="Alacritty"] workspace 1
+assign [app_id="org.mozilla.Thunderbird"] workspace 2
 
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
@@ -287,6 +288,7 @@ exec tidal-hifi
 exec discord
 exec steam
 exec alacritty -e sh ~/.local/scripts/ta
+exec thunderbird
 
 # background wallpaper
 exec ~/.azotebg
