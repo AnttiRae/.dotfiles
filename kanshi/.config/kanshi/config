@@ -1,0 +1,27 @@
+output "Acer Technologies XV340CK P THQEE0013E00" {
+  mode 3440x1440@143.923
+  position 3000,0
+  scale 1
+  alias $HOME_CENTER
+}
+
+output "Ancor Communications Inc VG248 ECLMQS141309" {
+  mode 1920x1080@60.000
+  position 6440,0
+  scale 1
+  transform 90
+  alias $HOME_RIGHT
+}
+
+output "Ancor Communications Inc VG248 DBLMQS040980" {
+  mode 1920x1080@60.000
+  position 1080,0
+  scale 1
+  alias $HOME_LEFT
+}
+
+profile home_1 {
+  output $HOME_RIGHT enable
+  output $HOME_CENTER enable
+  output $HOME_LEFT enable
+}
