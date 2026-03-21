@@ -2,21 +2,20 @@
 
 if [[ " $@ " =~ " COMMON " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "COMMON PACKAGES INSTALL"
-  paru -Suy --noconfirm - < ./packages/common
+  paru -Suy - < ./packages/common
 fi
 
 if [[ " $@ " =~ " DOCKER " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "DOCKER INSTALL"
-  paru -Suy --noconfirm docker
+  paru -Suy docker
   sudo groupadd docker
   sudo usermod -aG docker $USER
   newgrp docker
 fi
 
 if [[ " $@ " =~ " FISH " ]] || [[ " $@ " =~ " ALL " ]]; then
-  paru -S fisher fish --noconfirm
-  fisher install IlanCosman/tide@v6
-  tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Darkest --show_time='24-hour format' --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Sharp --powerline_prompt_style='Two lines, character' --prompt_connection=Dotted --powerline_right_prompt_frame=No --prompt_connection_andor_frame_color=Darkest --prompt_spacing=Sparse --icons='Many icons' --transient=No
+  paru -S fisher fish
+  fish -c 'fisher update'
 fi
 
 if [[ " $@ " =~ " K8S " ]] || [[ " $@ " =~ " ALL " ]]; then
@@ -37,13 +36,12 @@ fi
 
 if [[ " $@ " =~ " PYTHON " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "PYTHON+PYENV INSTALL"
-  paru -Suy --noconfirm python python-pip
+  paru -Suy python python-pip
   curl https://pyenv.run | bash
 fi
 
-
 if [[ " $@ " =~ " NODE " ]] || [[ " $@ " =~ " ALL " ]]; then
-  paru -Suy --noconfirm nodejs npm
+  paru -Suy nodejs npm
 fi
 
 if [[ " $@ " =~ " TMUX " ]] || [[ " $@ " =~ " ALL " ]]; then
@@ -51,33 +49,26 @@ if [[ " $@ " =~ " TMUX " ]] || [[ " $@ " =~ " ALL " ]]; then
 
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-fi
-if [[ " $@ " =~ " JETBRAINS " ]] || [[ " $@ " =~ " ALL " ]]; then
-  echo "JETRBAINS TOOLBOX AND IDEAVIM"
-  wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.5.2.35332.tar.gz -P /tmp/
-  tar -xzf /tmp/jetbrains-toolbox-2.5.2.35332.tar.gz -C /tmp
-  mv /tmp/**/jetbrains-toolbox ~/Toolbox
-  ~/Toolbox/jetbrains-toolbox
-  stow -R ideavim
+  stow -S tmux
 fi
 
 if [[ " $@ " =~ " KDE " ]]; then
   echo "KONSAVE IMPORT"
-  paru -Suy --noconfirm konsave
+  paru -Suy konsave
   konsave -i ./thinkpad-a.knsv
   konsave -a thinkpad-a
 fi
 
 if [[ " $@ " =~ " SWAY " ]]; then
   echo "SWAY SETUP"
-  paru -Syu --noconfirm - < ./packages/sway
+  paru -Syu - < ./packages/sway
 
-  stow -S sway waybar scripts tmux kickstart-nvim fuzzel mako
+  stow -S sway waybar scripts kickstart-nvim fuzzel mako
 fi
 
 if [[ " $@ " =~ " DEVOPS " ]] || [[ " $@ " =~ " ALL " ]]; then
   echo "DEVOPS SETUP"
-  paru -Syu --noconfirm - < ./packages/devops
+  paru -Syu - < ./packages/devops
 
   stow -S k9s
 fi
