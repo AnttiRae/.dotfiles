@@ -22,7 +22,7 @@ set $term alacritty
 set $menu fuzzel
 set $screenshot grim -g "$(slurp)" - | wl-copy
 set $screenrecord wf-recorder -g "$(slurp)"
-set $lock swaylock -f --color 22222222
+set $lock swaylock -f --color 22222222 --image ~/.dotfiles/lock.jpg
 
 
 ### Output configuration
@@ -289,8 +289,7 @@ exec alacritty -e sh ~/.local/scripts/ta
 exec thunderbird
 
 # kanshi (monitor setup)
-exec kanshi
-exec_always kill -1 $(pidof kanshi)
+exec_always kanshi
 
 # background wallpaper
 exec ~/.azotebg
