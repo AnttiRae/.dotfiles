@@ -30,22 +30,34 @@ output "Lenovo Group Limited LEN P27h-10 0x01010101" {
 output "Lenovo Group Limited LEN T27h-20 VNA3Y14T" {
   mode 2560x1440@59.951
   position 0,0
-  scale 1
+  scale 1.5
   alias $OFFICE_LEFT
 }
 
 output  "Samsung Display Corp. 0x419F Unknown" {
   mode 2880x1800@120.000
   position 5120,0
-  scale 2
+  scale 1.5
   alias $OFFICE_RIGHT
 }
 
+
+output  "Samsung Display Corp. 0x419F Unknown" {
+  mode 2880x1800@120.000
+  position 2500,1440
+  scale 1
+  alias $OFFICE_RIGHT
+}
 
 profile home_1 {
   output $HOME_RIGHT enable
   output $HOME_CENTER enable
   output $HOME_LEFT enable
+}
+
+profile office_home_1 {
+  output $HOME_CENTER enable
+  output $
 }
 
 profile office_1 {
