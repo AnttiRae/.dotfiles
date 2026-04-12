@@ -111,6 +111,13 @@
         "cursor": true
     },
 
+    "network#bandwidth": {
+        "interface": "enp13s0",
+        "format": "{bandwidthDownBytes}   {bandwidthUpBytes}",
+        "max-length": 50,
+        "interval": 2
+    },
+
     "network": {
         "interval": 10,
         "format-disabled": "",
