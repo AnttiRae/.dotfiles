@@ -303,3 +303,7 @@ exec mako -c ~/.config/mako/config
 exec clipse -listen
 # automount usbs
 exec udiskie --smart-tray
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK && \
+     systemctl --user start xdg-desktop-portal-wlr.service && \
+     systemctl --user start xdg-desktop-portal.service

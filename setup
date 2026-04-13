@@ -64,6 +64,11 @@ if [[ " $@ " =~ " SWAY " ]]; then
   paru -Syu - < ./packages/sway
 
   stow -S sway waybar scripts kickstart-nvim fuzzel mako
+
+  # sway.desktop must go to a system path owned by root; stow can't write there
+  sudo mkdir -p /usr/local/share/wayland-sessions
+  sudo cp ./sway/.local/share/wayland-sessions/sway.desktop \
+          /usr/local/share/wayland-sessions/sway.desktop
 fi
 
 if [[ " $@ " =~ " DEVOPS " ]] || [[ " $@ " =~ " ALL " ]]; then
