@@ -1,6 +1,6 @@
 [{
     "layer": "top",
-    "output": "DP-3",
+    "output": "DP-1",
     "position": "top",
 
     "margin-left": 10,
@@ -14,6 +14,7 @@
         "custom/split",
         "clock#date",
         "mpris",
+        "battery",
     ],
     "modules-center": [
         "group/workspaces",
@@ -44,7 +45,6 @@
             "custom/arch",
             "idle_inhibitor",
             "custom/split",
-            "custom/powerprofile",
             "custom/closebracket"
         ]
     },
@@ -53,15 +53,6 @@
         "tooltip": false,
         "on-click": "wofi --show drun"
     },
-    "custom/powerprofile": {
-        "exec": "~/.config/waybar/scripts/powerprofile.sh display",
-        "on-click": "~/.config/waybar/scripts/powerprofile.sh toggle",
-        "interval": 5,
-        "tooltip": true,
-        "exec-tooltip": "~/.config/waybar/scripts/powerprofile.sh tooltip",
-        "tooltip-format": "Power Profile: {} \nClick to cycle: Efficient → Normal → Overclocked"
-    },
-
     "group/workspaces":{
         "orientation": "horizontal",
         "modules":[
@@ -212,12 +203,8 @@
             "custom/openbracket",
             "custom/mako",
             "custom/split",
-            "network",
-            "custom/bluetooth",
-            "battery",
-            "custom/split",
             "tray",
-            "custom/closebracket"
+            "custom/closebracket",
         ]
     },
     "clock#time": {

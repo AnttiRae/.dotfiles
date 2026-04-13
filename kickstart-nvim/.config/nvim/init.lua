@@ -719,7 +719,13 @@ require('lazy').setup({
             'yaml',
           },
         },
-        gopls = {},
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+          gofumpt = true,
+        },
         terraformls = {
           filetypes = { 'terraform', 'tf', 'terraform-vars' },
         },
@@ -913,6 +919,7 @@ require('lazy').setup({
         }
       end,
       formatters_by_ft = {
+        go = { 'gopls' },
         lua = { 'stylua' },
         python = { 'ruff' },
         javascript = { 'prettierd', 'prettier' },

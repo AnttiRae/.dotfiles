@@ -291,6 +291,9 @@ exec slack
 exec kanshi
 exec_always kill -1 $(pidof kanshi)
 
+# nm-applet
+exec nm-applet --indicator
+
 # background wallpaper
 exec ~/.azotebg
 # notifications
