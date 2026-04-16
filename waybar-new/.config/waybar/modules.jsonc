@@ -19,7 +19,7 @@
 
     "cpu": {
         "interval": 30,
-        "format":" {usage}%",
+        "format":"  {usage}%",
         "cursor": true,
         "states": {
             "warning": 80,
@@ -35,7 +35,7 @@
 
     "load": {
         "interval": 30,
-        "format": " {load1}%",
+        "format": "  {load1}%",
         "cursor": true
     },
 
@@ -112,7 +112,6 @@
     },
 
     "network#bandwidth": {
-        "interface": "enp13s0",
         "format": "{bandwidthDownBytes}   {bandwidthUpBytes}",
         "max-length": 50,
         "interval": 2
