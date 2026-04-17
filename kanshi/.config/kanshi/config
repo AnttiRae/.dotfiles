@@ -42,13 +42,6 @@ output  "Samsung Display Corp. 0x419F Unknown" {
 }
 
 
-output  "Samsung Display Corp. 0x419F Unknown" {
-  mode 2880x1800@120.000
-  position 2500,1440
-  scale 1
-  alias $OFFICE_RIGHT
-}
-
 profile home_1 {
   output $HOME_RIGHT enable
   output $HOME_CENTER enable
@@ -57,7 +50,7 @@ profile home_1 {
 
 profile office_home_1 {
   output $HOME_CENTER enable
-  output $
+  output $OFFICE_RIGHT
 }
 
 profile office_1 {
