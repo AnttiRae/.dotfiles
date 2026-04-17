@@ -809,6 +809,7 @@ require('lazy').setup({
         'ruff',
         'markdownlint',
         'prettier',
+        'mmdc',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
