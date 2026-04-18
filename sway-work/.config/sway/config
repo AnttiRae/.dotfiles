@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -283,7 +283,7 @@ client.unfocused "#696969" "#696969" "#696969" "#696969"
 
 exec tidal-hifi
 exec discord
-exec alacritty -e sh ~/.local/scripts/ta
+exec kitty -e sh ~/.local/scripts/ta
 exec thunderbird
 exec slack
 

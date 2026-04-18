@@ -285,7 +285,7 @@ exec_always ./primary-screen.sh
 exec tidal-hifi
 exec discord
 exec steam
-exec alacritty -e sh ~/.local/scripts/ta
+exec kitty -e sh ~/.local/scripts/ta
 exec thunderbird
 
 # kanshi (monitor setup)
