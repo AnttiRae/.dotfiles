@@ -3,6 +3,10 @@ fish_vi_key_bindings
 function fish_greeting
 end
 
+function k9s
+    TERM=xterm-256color command k9s $argv
+end
+
 
 # PATH
 
