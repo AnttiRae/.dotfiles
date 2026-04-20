@@ -197,7 +197,7 @@ bindsym $mod+g focus mode_toggle
 bindsym $mod+a focus parent
 
 # Clipboard related stuff
-bindsym $mod+Shift+Control+mod1+g exec alacritty --class clipse -e clipse
+bindsym $mod+Shift+Control+mod1+g exec kitty --class clipse -e clipse
 
 for_window [app_id="clipse"] floating enable, move position center, resize set 40ppt 80ppt
 
@@ -270,7 +270,7 @@ workspace 7 output DP-1
 assign [app_id="tidal-hifi"] workspace 5
 assign [class="discord"] workspace 5
 assign [class="steam"] workspace 5
-assign [app_id="Alacritty"] workspace 1
+assign [app_id="Kitty"] workspace 1
 assign [app_id="org.mozilla.Thunderbird"] workspace 2
 assign [app_id="Slack"] workspace 7
 
