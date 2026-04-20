@@ -7,9 +7,11 @@
   "IS_MINIMIZED": false,
   "SKIP_HOST_UPDATE": true,
   "WINDOW_BOUNDS": {
-    "x": 5372,
-    "y": 30,
-    "width": 1056,
-    "height": 1880
-  }
+    "x": 2564,
+    "y": 38,
+    "width": 2552,
+    "height": 1400
+  },
+  "openH264Enabled": true,
+  "enableLibOpenH264Electron": false
 }
