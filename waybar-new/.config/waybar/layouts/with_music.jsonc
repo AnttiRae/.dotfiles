@@ -3,7 +3,7 @@
     "position": "top",
     "output": "DP-3",
     "height": 25,
-    "margin": "5 50",
+    "margin": "2 50",
 
     "group/left" : {
         "orientation": "horizontal",

@@ -84,3 +84,6 @@ status is-interactive; and begin
   set hydro_color_duration --dim $fish_color_command
 
 end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/arae/Projects/devops/clusters/ai-prod/google-cloud-sdk/path.fish.inc' ]; . '/home/arae/Projects/devops/clusters/ai-prod/google-cloud-sdk/path.fish.inc'; end
