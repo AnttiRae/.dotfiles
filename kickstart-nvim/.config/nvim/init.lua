@@ -717,6 +717,8 @@ require('lazy').setup({
             'typescript',
             'typescriptreact',
             'yaml',
+            'py',
+            'go',
           },
         },
         gopls = {
@@ -730,6 +732,7 @@ require('lazy').setup({
           filetypes = { 'terraform', 'tf', 'terraform-vars' },
         },
         pyright = {},
+        ruff = {},
         helm_ls = {
           settings = {
             ['helm-ls'] = {
@@ -962,7 +965,18 @@ require('lazy').setup({
           --   end,
           -- },
         },
-        opts = {},
+        opts = {
+          sources = {
+            default = { 'django' },
+            providers = {
+              django = {
+                name = 'Django',
+                module = 'django.completions.blink',
+                async = true,
+              },
+            },
+          },
+        },
       },
       'folke/lazydev.nvim',
     },
