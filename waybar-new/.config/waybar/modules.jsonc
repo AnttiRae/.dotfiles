@@ -117,6 +117,14 @@
         "interval": 2
     },
 
+    "custom/mako": {
+      "format": "{}",
+      "exec": "makoctl mode | grep -q do-not-disturb && echo ' ' || echo ' '",
+      "on-click": "makoctl mode -t do-not-disturb",
+      "interval": 1,
+      "return-type": "text"
+    },
+
     "network": {
         "interval": 10,
         "format-disabled": "",

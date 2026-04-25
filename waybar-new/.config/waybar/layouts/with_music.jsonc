@@ -34,7 +34,7 @@
     "group/right" : {
         "orientation": "horizontal",
         "modules" : [
-            "bluetooth", "pulseaudio#input", "group/group-volume", "tray"
+           "custom/mako", "bluetooth", "pulseaudio#input", "group/group-volume", "tray"
         ]
     },
 
