@@ -1024,9 +1024,10 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'django' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          django = { name = 'Django', module = 'django.completions.blink', async = true },
         },
       },
 

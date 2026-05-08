@@ -1,0 +1,31 @@
+{
+    "explorer.confirmDelete": false,
+
+    // Hide UI clutter
+    "workbench.activityBar.location": "hidden",
+    "workbench.statusBar.visible": true,
+    "window.menuBarVisibility": "hidden",
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": true,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.horizontal": "hidden",
+
+    // Code Telescope layout
+    "codeTelescope.layout.mode": "classic",
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "s", "f"],
+            "commands": ["code-telescope.fuzzy.file"]
+        },
+        {
+            "before": ["<leader>", "s", "g"],
+            "commands": ["code-telescope.fuzzy.wsText"]
+        },
+        {
+            "before": ["<leader>", "e"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        }
+    ],
+    "workbench.colorTheme": "Everblush"
+}

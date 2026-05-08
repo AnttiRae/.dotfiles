@@ -7,7 +7,6 @@ function k9s
     TERM=xterm-256color command k9s $argv
 end
 
-
 # PATH
 
 fish_add_path -p "$HOME/go/bin"
