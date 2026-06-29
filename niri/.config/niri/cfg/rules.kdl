@@ -1,0 +1,63 @@
+    workspace "terminal"
+
+    workspace "email"
+
+    workspace "web"
+
+    workspace "misc"
+
+    workspace "games"
+
+    window-rule {
+        geometry-corner-radius 5 // Set every window radius to 20
+        clip-to-geometry true
+    }
+
+     // if you use steam you will probably like these
+    window-rule {
+        match app-id="steam"
+        exclude title=r#"^[Ss]team$"#
+        open-floating true
+        open-on-workspace "games"
+    }
+
+    window-rule {
+       match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+       default-floating-position x=10 y=10 relative-to="bottom-right"
+       open-focused false
+    }
+
+    window-rule {
+        match app-id="firefox"
+        open-on-workspace "web"
+    }
+
+    window-rule {
+        match app-id="zen"
+        open-on-workspace "web"
+    }
+
+    window-rule {
+        match app-id="tidal-hifi"
+        open-on-workspace "games"
+    }
+
+    window-rule {
+        match app-id="kitty"
+        open-on-workspace "terminal"
+    }
+
+    window-rule {
+        match app-id="kitty"
+        open-on-workspace "terminal"
+    }
+
+    window-rule {
+        match app-id="org.mozilla.Thunderbird"
+        open-on-workspace "email"
+    }
+
+    layer-rule {
+        match namespace="^noctalia-wallpaper*"
+        place-within-backdrop true
+    }
