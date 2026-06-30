@@ -7,3 +7,4 @@
     spawn-at-startup "zen-browser"
     spawn-at-startup "thunderbird"
     spawn-at-startup "discord"
+    spawn-at-startup "steam"
