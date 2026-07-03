@@ -192,9 +192,9 @@ bindsym $mod+g focus mode_toggle
 bindsym $mod+a focus parent
 
 # Clipboard related stuff
-bindsym $mod+Shift+Control+mod1+g exec alacritty --class clipse -e clipse
+# bindsym $mod+Shift+Control+mod1+g exec alacritty --class clipse -e clipse
 
-for_window [app_id="clipse"] floating enable, move position center, resize set 40ppt 80ppt
+# for_window [app_id="clipse"] floating enable, move position center, resize set 40ppt 80ppt
 
 #
 # Scratchpad:
@@ -287,9 +287,6 @@ exec nm-applet --indicator
 exec ~/.azotebg
 # notifications
 exec mako -c ~/.config/mako/config
-# clipboard
-# run the background listener on startup
-exec clipse -listen
 # automount usbs
 exec udiskie --smart-tray
 
@@ -305,6 +302,10 @@ set $ipc qs -c noctalia-shell ipc call
 bindsym $mod+r exec $ipc launcher toggle
 bindsym $mod+s exec $ipc controlCenter toggle
 bindsym $mod+comma exec $ipc settings toggle
+
+# clipboard
+bindsym $mod+Shift+Control+mod1+g exec $ipc launcher clipboard
+
 
 # Media keys
 bindsym --locked XF86AudioRaiseVolume exec $ipc volume increase
