@@ -43,7 +43,7 @@ exec swayidle -w \
   before-sleep $lock
 
 
-bindsym $mod+Escape exec $lock
+# bindsym $mod+Escape exec $lock
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -66,7 +66,7 @@ bindsym $mod+Escape exec $lock
 
 input type:pointer {
   accel_profile "flat"
-  pointer_accel 0.1
+  pointer_accel 0.0
 }
 
 input type:keyboard {
@@ -285,8 +285,6 @@ exec nm-applet --indicator
 
 # background wallpaper
 exec ~/.azotebg
-# notifications
-exec mako -c ~/.config/mako/config
 # automount usbs
 exec udiskie --smart-tray
 
@@ -306,6 +304,8 @@ bindsym $mod+comma exec $ipc settings toggle
 # clipboard
 bindsym $mod+Shift+Control+mod1+g exec $ipc launcher clipboard
 
+# Lock
+bindsym $mod+Escape exec $ipc lockScreen lock
 
 # Media keys
 bindsym --locked XF86AudioRaiseVolume exec $ipc volume increase
