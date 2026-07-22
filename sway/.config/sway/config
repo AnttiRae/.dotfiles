@@ -294,7 +294,7 @@ exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DIS
      systemctl --user start xdg-desktop-portal.service
 
 
-set $ipc qs -c noctalia-shell ipc call
+# set $ipc qs -c noctalia-shell ipc call
 
 # Core binds
 bindsym $mod+r exec $ipc launcher toggle

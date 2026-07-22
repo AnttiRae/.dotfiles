@@ -22,7 +22,7 @@ set $term kitty
 set $menu fuzzel
 set $screenshot grim -g "$(slurp)" - | wl-copy
 set $screenrecord wf-recorder -g "$(slurp)"
-set $lock swaylock -f --color 22222222
+set $lock swaylock -f --color 22222222 --image ~/.dotfiles/lock.jpg
 
 
 ### Output configuration
@@ -86,7 +86,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+x kill
 
 # Start your launcher
-bindsym $mod+r exec $menu
+# bindsym $mod+r exec $menu
 
 bindsym $mod+e exec thunar
 # Drag floating windows by holding down $mod and left mouse button.
@@ -180,7 +180,7 @@ bindsym $mod+b splith
 bindsym $mod+v splitv
 
 # Switch the current container between different layout styles
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+t layout toggle split
 
@@ -197,7 +197,7 @@ bindsym $mod+g focus mode_toggle
 bindsym $mod+a focus parent
 
 # Clipboard related stuff
-bindsym $mod+Shift+Control+mod1+g exec kitty --class clipse -e clipse
+# bindsym $mod+Shift+Control+mod1+g exec kitty --class clipse -e clipse
 
 for_window [app_id="clipse"] floating enable, move position center, resize set 40ppt 80ppt
 
@@ -243,9 +243,9 @@ bindsym $mod+Shift+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-  swaybar_command waybar
-}
+# bar {
+#   swaybar_command waybar
+# }
 
 default_border pixel 2
 focus_follows_mouse no
@@ -296,8 +296,6 @@ exec nm-applet --indicator
 
 # background wallpaper
 exec ~/.azotebg
-# notifications
-exec mako -c ~/.config/mako/config
 # clipboard
 # run the background listener on startup
 exec clipse -listen
@@ -307,3 +305,23 @@ exec udiskie --smart-tray
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK && \
      systemctl --user start xdg-desktop-portal-wlr.service && \
      systemctl --user start xdg-desktop-portal.service
+
+exec QT_QPA_PLATFORMTHEME=gtk3 qs -c noctalia-shell
+
+set $ipc qs -c noctalia-shell ipc call
+
+# Core binds
+bindsym $mod+r exec $ipc launcher toggle
+bindsym $mod+s exec $ipc controlCenter toggle
+bindsym $mod+Shift+Control+mod1+v exec $ipc calendar toggle
+bindsym $mod+comma exec $ipc settings toggle
+bindsym $mod+Shift+Control+mod1+g exec $ipc launcher clipboard
+
+
+# Media keys
+bindsym --locked XF86AudioRaiseVolume exec $ipc volume increase
+bindsym --locked XF86AudioLowerVolume exec $ipc volume decrease
+bindsym --locked XF86AudioMute exec $ipc volume muteOutput
+bindsym --locked XF86MonBrightnessUp exec $ipc brightness increase
+bindsym --locked XF86MonBrightnessDown exec $ipc brightness decrease
+
