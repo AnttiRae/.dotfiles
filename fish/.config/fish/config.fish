@@ -38,6 +38,9 @@ status is-interactive; and begin
 
   alias vim='nvim'
   alias vi='nvim'
+  alias svim='nvim -S'
+  alias svi='nvim -S'
+  alias snvim='nvim -S'
 
   alias rs='source ~/.config/fish/config.fish'
 
