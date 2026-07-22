@@ -2,7 +2,7 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
 
     spawn-sh-at-startup "qs -c noctalia-shell"
-    spawn-at-startup "kitty -e sh ~/.local/scripts/ta"
+    spawn-sh-at-startup "kitty -e sh ~/.local/scripts/ta"
     spawn-at-startup "tidal-hifi"
     spawn-at-startup "zen-browser"
     spawn-at-startup "thunderbird"

@@ -23,11 +23,8 @@
         clip-to-geometry true
     }
 
-     // if you use steam you will probably like these
     window-rule {
         match app-id="steam"
-        exclude title=r#"^[Ss]team$"#
-        open-floating true
         open-on-workspace "games"
     }
 
@@ -35,6 +32,7 @@
        match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
        default-floating-position x=10 y=10 relative-to="bottom-right"
        open-focused false
+       open-floating true
        open-on-workspace "games"
     }
 
