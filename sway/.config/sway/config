@@ -18,8 +18,6 @@ set $term kitty
 
 set $screenshot grim -g "$(slurp)" - | wl-copy
 set $screenrecord wf-recorder -g "$(slurp)"
-set $lock swaylock -f --color 22222222 --image ~/.dotfiles/lock.jpg
-
 
 ### Output configuration
 #
@@ -32,15 +30,8 @@ set $lock swaylock -f --color 22222222 --image ~/.dotfiles/lock.jpg
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 output DP-1 transform 270
-
-### Idle configuration
-#
-# Example configuration:
-#
-exec swayidle -w \
-  timeout 600 $lock \
-  timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-  before-sleep $lock
+output HDMI-A-1 position 0 0
+output DP-3 position 1920 0
 
 
 # bindsym $mod+Escape exec $lock
@@ -239,8 +230,6 @@ focus_follows_mouse no
 
 include @sysconfdir@/sway/config.d/*
 
-
-gaps inner 5
 smart_gaps on
 
 #
@@ -264,21 +253,17 @@ client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
 client.unfocused "#696969" "#696969" "#696969" "#696969"
 
-
 # autostart stuff
 
 exec_always ./primary-screen.sh
 
-exec qs -c noctalia-shell
+exec QT_QPA_PLATFORMTHEME=gtk3 qs -c noctalia-shell
 
 exec tidal-hifi
 exec discord
 exec steam
 exec kitty -e sh ~/.local/scripts/ta
 exec thunderbird
-
-# kanshi (monitor setup)
-exec_always kanshi
 
 # nm-applet
 exec nm-applet --indicator
@@ -293,8 +278,7 @@ exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DIS
      systemctl --user start xdg-desktop-portal-gtk.service && \
      systemctl --user start xdg-desktop-portal.service
 
-
-# set $ipc qs -c noctalia-shell ipc call
+set $ipc qs -c noctalia-shell ipc call
 
 # Core binds
 bindsym $mod+r exec $ipc launcher toggle
