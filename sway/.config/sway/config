@@ -246,7 +246,7 @@ workspace 7 output DP-3
 assign [app_id="tidal-hifi"] workspace 5
 assign [class="discord"] workspace 9
 assign [class="steam"] workspace 5
-assign [app_id="Alacritty"] workspace 1
+assign [app_id="kitty"] workspace 1
 assign [app_id="org.mozilla.Thunderbird"] workspace 2
 
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
@@ -284,9 +284,11 @@ set $ipc qs -c noctalia-shell ipc call
 bindsym $mod+r exec $ipc launcher toggle
 bindsym $mod+s exec $ipc controlCenter toggle
 bindsym $mod+comma exec $ipc settings toggle
+bindsym $mod+Shift+Control+mod1+v exec $ipc calendar toggle
 
 # clipboard
 bindsym $mod+Shift+Control+mod1+g exec $ipc launcher clipboard
+
 
 # Lock
 bindsym $mod+Escape exec $ipc lockScreen lock
