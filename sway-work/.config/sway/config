@@ -23,6 +23,9 @@ set $menu fuzzel
 set $screenshot grim -g "$(slurp)" - | wl-copy
 set $screenrecord wf-recorder -g "$(slurp)"
 
+output HDMI-A-1 position 0 0
+output DP-1 position 2560 0
+output DP-3 position 5120 0
 
 ### Input configuration
 #
@@ -240,35 +243,15 @@ workspace 6 output DP-1
 workspace 7 output DP-1
 
 assign [app_id="tidal-hifi"] workspace 5
-assign [class="discord"] workspace 5
+assign [app_id="discord"] workspace 5
 assign [class="steam"] workspace 5
-assign [app_id="Kitty"] workspace 1
+assign [app_id="kitty"] workspace 1
 assign [app_id="org.mozilla.Thunderbird"] workspace 2
-assign [app_id="Slack"] workspace 7
+assign [app_id="slack"] workspace 7
 
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
 client.unfocused "#696969" "#696969" "#696969" "#696969"
-
-
-# autostart stuff
-
-exec tidal-hifi
-exec discord
-exec kitty -e sh ~/.local/scripts/ta
-exec thunderbird
-exec slack
-
-# nm-applet
-exec nm-applet --indicator
-
-# background wallpaper
-exec ~/.azotebg
-# clipboard
-# run the background listener on startup
-exec clipse -listen
-# automount usbs
-exec udiskie --smart-tray
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK && \
      systemctl --user start xdg-desktop-portal-wlr.service && \
@@ -292,4 +275,24 @@ bindsym --locked XF86AudioLowerVolume exec $ipc volume decrease
 bindsym --locked XF86AudioMute exec $ipc volume muteOutput
 bindsym --locked XF86MonBrightnessUp exec $ipc brightness increase
 bindsym --locked XF86MonBrightnessDown exec $ipc brightness decrease
+
+# autostart stuff
+
+exec tidal-hifi
+exec discord
+exec kitty -e sh ~/.local/scripts/ta
+exec thunderbird
+exec slack
+
+# nm-applet
+exec nm-applet --indicator
+
+# background wallpaper
+exec ~/.azotebg
+# clipboard
+# run the background listener on startup
+exec clipse -listen
+# automount usbs
+exec udiskie --smart-tray
+
 
