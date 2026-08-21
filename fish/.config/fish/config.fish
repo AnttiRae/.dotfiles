@@ -11,6 +11,7 @@ end
 
 fish_add_path -p "$HOME/go/bin"
 fish_add_path -p "$HOME/.local/scripts"
+fish_add_path -p "$HOME/.local/bin"
 
 set -x EDITOR nvim
 set -x VISUAL nvim
