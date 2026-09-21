@@ -16,8 +16,8 @@ set $right l
 # Your preferred terminal emulator
 set $term kitty
 
-set $screenshot grim -g "$(slurp)" - | wl-copy
-set $screenrecord wf-recorder -g "$(slurp)"
+# set $screenshot grim -g "$(slurp)" - | wl-copy
+# set $screenrecord wf-recorder -g "$(slurp)"
 
 ### Output configuration
 #
@@ -110,7 +110,7 @@ bindsym XF86Search exec bemenu-run
 # screenshot/cast
 #
 
-bindsym $mod+Shift+s exec $screenshot
+# bindsym $mod+Shift+s exec $screenshot
 bindsym $mod+Shift+d exec $screenrecord
 
 #
@@ -243,7 +243,7 @@ workspace 5 output DP-3
 workspace 6 output DP-3
 workspace 7 output DP-3
 
-assign [app_id="tidal-hifi"] workspace 5
+assign [app_id="tidal-hifi"] workspace 4
 assign [class="discord"] workspace 9
 assign [class="steam"] workspace 5
 assign [app_id="kitty"] workspace 1
@@ -257,7 +257,7 @@ client.unfocused "#696969" "#696969" "#696969" "#696969"
 
 exec_always ./primary-screen.sh
 
-exec QT_QPA_PLATFORMTHEME=gtk3 qs -c noctalia-shell
+exec QT_QPA_PLATFORMTHEME=gtk3 noctalia
 
 exec tidal-hifi
 exec discord
@@ -278,20 +278,23 @@ exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DIS
      systemctl --user start xdg-desktop-portal-gtk.service && \
      systemctl --user start xdg-desktop-portal.service
 
-set $ipc qs -c noctalia-shell ipc call
+set $ipc noctalia msg
 
 # Core binds
-bindsym $mod+r exec $ipc launcher toggle
+bindsym $mod+r exec $ipc panel-toggle launcher
 bindsym $mod+s exec $ipc controlCenter toggle
 bindsym $mod+comma exec $ipc settings toggle
-bindsym $mod+Shift+Control+mod1+v exec $ipc calendar toggle
+bindsym $mod+Shift+Control+mod1+v exec $ipc panel-toggle control-center calendar
 
 # clipboard
-bindsym $mod+Shift+Control+mod1+g exec $ipc launcher clipboard
+bindsym $mod+Shift+Control+mod1+g exec $ipc panel-toggle clipboard
+
+# Screenshotting
+bindsym $mod+Shift+s exec $ipc screenshot-region
 
 
 # Lock
-bindsym $mod+Escape exec $ipc lockScreen lock
+bindsym $mod+Escape exec $ipc session lock
 
 # Media keys
 bindsym --locked XF86AudioRaiseVolume exec $ipc volume increase
