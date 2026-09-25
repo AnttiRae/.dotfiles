@@ -19,9 +19,8 @@ set $term kitty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path |  rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 2 -theme gruvbox-dark | xargs swaymsg exec --
-set $menu fuzzel
-set $screenshot grim -g "$(slurp)" - | wl-copy
-set $screenrecord wf-recorder -g "$(slurp)"
+# set $screenshot grim -g "$(slurp)" - | wl-copy
+# set $screenrecord wf-recorder -g "$(slurp)"
 
 output HDMI-A-1 position 0 0
 output DP-1 position 2560 0
@@ -99,7 +98,7 @@ bindsym XF86Search exec bemenu-run
 # screenshot/cast
 #
 
-bindsym $mod+Shift+s exec $screenshot
+# bindsym $mod+Shift+s exec $screenshot
 bindsym $mod+Shift+d exec $screenrecord
 
 #
@@ -249,6 +248,8 @@ assign [app_id="kitty"] workspace 1
 assign [app_id="org.mozilla.Thunderbird"] workspace 2
 assign [app_id="slack"] workspace 7
 
+for_window [app_id="dev.noctalia.Noctalia"] floating enable
+
 client.focused "#FF7F50" "#FF7F50" "#FF7F50" "#FF7F50"
 client.focused_inactive "#696969" "#696969" "#696969" "#696969"
 client.unfocused "#696969" "#696969" "#696969" "#696969"
@@ -257,24 +258,9 @@ exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DIS
      systemctl --user start xdg-desktop-portal-wlr.service && \
      systemctl --user start xdg-desktop-portal.service
 
-exec QT_QPA_PLATFORMTHEME=gtk3 qs -c noctalia-shell
+exec QT_QPA_PLATFORMTHEME=gtk3 noctalia
 
-set $ipc qs -c noctalia-shell ipc call
-
-# Core binds
-bindsym $mod+r exec $ipc launcher toggle
-bindsym $mod+s exec $ipc controlCenter toggle
-bindsym $mod+Shift+Control+mod1+v exec $ipc calendar toggle
-bindsym $mod+comma exec $ipc settings toggle
-bindsym $mod+Shift+Control+mod1+g exec $ipc launcher clipboard
-bindsym $mod+Escape exec $ipc lockScreen lock
-
-# Media keys
-bindsym --locked XF86AudioRaiseVolume exec $ipc volume increase
-bindsym --locked XF86AudioLowerVolume exec $ipc volume decrease
-bindsym --locked XF86AudioMute exec $ipc volume muteOutput
-bindsym --locked XF86MonBrightnessUp exec $ipc brightness increase
-bindsym --locked XF86MonBrightnessDown exec $ipc brightness decrease
+set $ipc noctalia msg
 
 # autostart stuff
 
@@ -294,5 +280,31 @@ exec ~/.azotebg
 exec clipse -listen
 # automount usbs
 exec udiskie --smart-tray
+
+
+set $ipc noctalia msg
+
+# Core binds
+bindsym $mod+r exec $ipc panel-toggle launcher
+bindsym $mod+s exec $ipc controlCenter toggle
+bindsym $mod+comma exec $ipc settings toggle
+bindsym $mod+Shift+Control+mod1+v exec $ipc panel-toggle control-center calendar
+
+# clipboard
+bindsym $mod+Shift+Control+mod1+g exec $ipc panel-toggle clipboard
+
+# Screenshotting
+bindsym $mod+Shift+s exec $ipc screenshot-region
+
+
+# Lock
+bindsym $mod+Escape exec $ipc session lock
+
+# Media keys
+bindsym --locked XF86AudioRaiseVolume exec $ipc volume increase
+bindsym --locked XF86AudioLowerVolume exec $ipc volume decrease
+bindsym --locked XF86AudioMute exec $ipc volume muteOutput
+bindsym --locked XF86MonBrightnessUp exec $ipc brightness increase
+bindsym --locked XF86MonBrightnessDown exec $ipc brightness decrease
 
 
